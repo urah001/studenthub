@@ -5,7 +5,8 @@ import FetchDataSteps from "@/components/tutorial/FetchDataSteps";
 import Header from "@/components/Header";
 import { redirect } from "next/navigation";
 import Main from "@/components/MiddlePage";
-import Navigation from "@/components/LeftNavigation";
+import Navigation from "@/components/Navigation";
+//import Navigation from "@/components/Navigation";
 
 export default async function ProtectedPage() {
   const supabase = createClient();
