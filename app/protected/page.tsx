@@ -30,10 +30,9 @@ export default async function ProtectedPage() {
   </div>*/}
 
       <div className="animate-in flex-1 flex flex-col max-w-4xl px-3">
-        <main className="flex-1 flex flex-col ">
-          <Navigation />
-          <Main />
-        </main>
+        <Navigation />
+        <Main />
+        <main className="flex-1 flex flex-col "></main>
       </div>
     </div>
   );
