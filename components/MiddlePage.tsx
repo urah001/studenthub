@@ -28,9 +28,7 @@ import Link from "next/link";
 function Main() {
   return (
     <>
-      <div className="bg-foreground">
-        <div>hello world </div>
-      </div>
+      <div className="bg-foreground"></div>
     </>
   );
 }

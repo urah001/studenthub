@@ -1,3 +1,4 @@
+// this page is the foundation of the whole page , the whole pages lie on this as the background
 import React from "react";
 //import "../globals.css";
 import {
@@ -56,25 +57,25 @@ const Navigation_Item = [
 const Navigation = () => {
   return (
     <>
-      <div className="bg-inherit h-full flex justify-center items-center relative left-0">
+      <div className="bg-inherit h-full flex justify-center items-center relative left-0 ">
         <div className="max-w-screen-xl text-inherit w-full h-full flex relative">
           {/*left side bar for navigation*/}
 
           <section className="fixed  z-20 w-[275] flex flex-col h-screen items-stretch space-y-4">
-            <div className="flex flex-col h-full space-y-4 ">
+            <div className="flex flex-col h-full space-y-4 mt-8  ">
               {Navigation_Item.map((item) => (
                 <Link
-                  className="hover:bg-white/50 transition duration-200 rounded-3xl flex items-center justify-center space-x-4 mt-4 px-2 py-1"
+                  className="hover:primary transition duration-200 rounded-3xl flex items-center justify-center space-x-4 mt-4 px-2 py-1"
                   href={`/${item.title.toLowerCase()}`}
                   key={item.title}
                 >
-                  <div>
+                  <div className="absolute left-8">
                     <item.icon size={28} />
                   </div>
                   {item.title !== "schoolhub" && <div>{item.title}</div>}
                 </Link>
               ))}
-              <button className="rounded-full bg-primary text-2xl text-center hover:bg-opacity-90 mt-4 px-6 transition duration-200 ">
+              <button className="rounded-full primary text-2xl text-center hover:bg-opacity-90 mt-4 px-6 transition duration-200 ">
                 GIST
               </button>
             </div>

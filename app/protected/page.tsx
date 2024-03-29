@@ -11,32 +11,27 @@ import Navigation from "@/components/Navigation";
 export default async function ProtectedPage() {
   const supabase = createClient();
 
-  const {
+  /*const {
     data: { user },
   } = await supabase.auth.getUser();
 
   if (!user) {
     return redirect("/login");
-  }
+  }*/
 
   return (
     <div className="flex-1 w-full flex flex-col bg-background">
-      <div className="w-full h-full">
-        {/* <div className="py-6 font-bold bg-purple-950 text-center">
-          This is a protected page that you can only see as an authenticated
-          user
-  </div>*/}
+      {/*} <div className="w-full h-full">
         <nav className="w-full flex justify-center h-8">
-          <div className="w-full max-w-2xl flex justify-between items-center  text-sm absolute left-0">
-            {/* <DeployButton />*/}
+          <div className="w-full max-w-2xl flex justify-between items-center  text-sm  right-0">
             <AuthButton />
-            <Navigation />
           </div>
         </nav>
-      </div>
+  </div>*/}
 
       <div className="animate-in flex-1 flex flex-col max-w-4xl px-3">
         <main className="flex-1 flex flex-col ">
+          <Navigation />
           <Main />
         </main>
       </div>
