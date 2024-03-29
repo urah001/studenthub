@@ -6,6 +6,7 @@ import Header from "@/components/Header";
 import { redirect } from "next/navigation";
 import Main from "@/components/MiddlePage";
 import Navigation from "@/components/Navigation";
+import ContentPage from "@/components/ContentPage";
 //import Navigation from "@/components/Navigation";
 
 export default async function ProtectedPage() {
@@ -32,7 +33,7 @@ export default async function ProtectedPage() {
       <div className="animate-in flex-1 flex flex-col max-w-4xl px-3">
         <main className="flex-1 flex flex-col ">
           <Navigation />
-          <Main />
+          <ContentPage />
         </main>
       </div>
     </div>
