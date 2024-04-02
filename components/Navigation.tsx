@@ -57,11 +57,11 @@ const Navigation_Item = [
 const Navigation = () => {
   return (
     <>
-      <div className="bg-inherit h-full flex justify-center items-center relative left-0 ">
+      <div className="bg-inherit h-full flex justify-center items-center relative right-0  ">
         <div className="max-w-screen-xl text-inherit w-full h-full flex relative">
           {/*left side bar for navigation*/}
 
-          <section className="fixed  z-20 w-[275] flex flex-col h-screen items-stretch space-y-4">
+          <section className="fixed  z-20 max-w-[20%] flex flex-col h-screen items-stretch space-y-4">
             <div className="flex flex-col h-full space-y-4 mt-8  ">
               {Navigation_Item.map((item) => (
                 <Link

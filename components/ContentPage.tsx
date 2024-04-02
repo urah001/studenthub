@@ -3,10 +3,6 @@
   
   
   
-  I AM OUT OF DATE
-  
-  remeber to try and learn about restful api for the post 
-  
   remeber tweet_hashtag == gist_hashtag
   remeber tweet == gist
   
@@ -15,6 +11,7 @@
 }
 
 import React from "react";
+import { createClient } from "@/utils/supabase/server";
 //import "../globals.css";
 import {
   Bag,
@@ -41,16 +38,21 @@ import Link from "next/link";
 //   import Navigation from "../Navigation/page";
 //   import Explore from "../explore/page";
 
-function ContentPage() {
+async function ContentPage() {
+  const supabase = createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
   return (
     <>
-      <div className="bg-black h-full text-white bg-background text-foreground  flex justify-center items-center relative ">
-        <div className="max-w-screen-xl w-full h-full flex relative">
+      <div className="h-full bg-background text-foreground flex justify-center items-center ">
+        <div className="max-w-screen-xl w-full h-full flex">
           {/* navigation */}
 
           {/*main content */}
-          <main className="ml-[275px] flex w-full max-w-[1000px] min-h-screen h-full flex-col border-l-[0.5px] border-r-[0.5px] border-gray-600">
-            <h1 className="text-xl font-bold p-1 mt-2 backdrop-blur bg-black/10 sticky top-0">
+          <main className="ml-[25%] flex w-full max-w-[80%] min-h-screen h-full flex-col border-l-[0.5px] border-r-[0.5px] border-gray-600">
+            <h1 className="text-xl font-bold p-1 mt-2 backdrop-blur sticky top-0">
               Home
             </h1>
 
@@ -87,7 +89,7 @@ function ContentPage() {
                     {/*account info username and name*/}
                     <div className="flex items-center w-full justify-between">
                       <div className="flex items-center space-x-1">
-                        <div>web dev</div>
+                        <div>{user?.email}</div>
                         <div className="text-gray-500">@web</div>
                         <div>
                           <Dot />

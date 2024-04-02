@@ -4,6 +4,7 @@ import { createClient } from "@/utils/supabase/server";
 import Header from "@/components/Header";
 import AboutPage from "@/components/AboutSchhub";
 import { Button } from "@/components @/app /ui/button";
+import SignInAuthBtn from "./SignUp/SignUp-AuthBtn";
 
 export default async function Index() {
   const canInitSupabaseClient = () => {
@@ -32,8 +33,8 @@ export default async function Index() {
         <main className="flex-1 flex flex-col">
           <h2 className="text-foreground text-2xl mb-4">New to schoolhub ?</h2>
           {isSupabaseConnected && <AboutPage />}
-          <div className="w-full max-w-4xl flex justify-between items-center p-3 text-xl">
-            <AuthButton />
+          <div className="w-full flex flex-row max-w-4xl justify-between items-center p-3 text-xl">
+            <AuthButton /> or <SignInAuthBtn />
           </div>
           {/*<ConnectSupabaseSteps />}*/}
         </main>
