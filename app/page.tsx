@@ -5,8 +5,21 @@ import Header from "@/components/Header";
 import AboutPage from "@/components/AboutSchhub";
 import { Button } from "@/components @/app /ui/button";
 import SignInAuthBtn from "./SignUp/SignUp-AuthBtn";
+import { redirect } from "next/navigation";
 
 export default async function Index() {
+  //create supabase client
+  const supabase = createClient();
+
+  //collect the user data from the created client and check if they are authenticated
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  /*  
+  
+  
+  */
   const canInitSupabaseClient = () => {
     // This function is just for the interactive tutorial.
     // Feel free to remove it once you have Supabase connected.
@@ -30,7 +43,7 @@ export default async function Index() {
       </nav>
 
       <div className="animate-in flex-1 flex flex-col max-w-4xl px-3 ">
-        <main className="flex-1 flex flex-col">
+        <main className="flex-1added flex flex-col">
           <h2 className="text-foreground text-2xl mb-4">New to schoolhub ?</h2>
           {isSupabaseConnected && <AboutPage />}
           <div className="w-full flex flex-row max-w-4xl justify-between items-center p-3 text-xl">

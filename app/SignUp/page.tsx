@@ -79,39 +79,61 @@ export default function SignUpPage({
       </Link>
 
       <form className="animate-in flex-1 flex flex-col w-full justify-center gap-2">
-        {/* email */}
-        <label className="text-md" htmlFor="email">
-          Email
-        </label>
-        <input
-          className="rounded-md px-4 py-2 bg-inherit border mb-6"
-          name="email"
-          placeholder="you@example.com"
-          required
-        />
-        {/* name */}
-        <label className="text-md" htmlFor="password">
+        {/*
+        
+         name
+
+         */}
+
+        <label className="text-md" htmlFor="name">
           name
         </label>
         <input
           className="rounded-md px-4 py-2 bg-inherit border mb-6"
-          type="text"
           name="name"
-          placeholder="@...."
+          placeholder="your name"
           required
         />
-        {/* username */}
-        <label className="text-md" htmlFor="password">
+
+        {/* 
+
+        username 
+        
+        */}
+
+        <label className="text-md" htmlFor="username">
           username
         </label>
         <input
           className="rounded-md px-4 py-2 bg-inherit border mb-6"
-          type="password"
-          name="password"
-          placeholder="username"
+          type="text"
+          name="username"
+          placeholder="@...."
           required
         />
-        <label className="text-md" htmlFor="">
+        {/* 
+        
+        email 
+        
+        */}
+        <label className="text-md" htmlFor="email">
+          email
+        </label>
+        <input
+          className="rounded-md px-4 py-2 bg-inherit border mb-6"
+          type="text"
+          name="email"
+          placeholder="you@example.com"
+          required
+        />
+
+        {/* 
+        
+        password 
+        
+        */}
+
+        <label className="text-md" htmlFor="password">
           password
         </label>
         <input
