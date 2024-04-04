@@ -9,26 +9,26 @@ export default function SignUpPage({
 }: {
   searchParams: { message: string };
 }) {
-  const signIn = async (formData: FormData) => {
+  /*const signIn = async (formData: FormData) => {
     "use server";
-
+    
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
     /* const name = formData.get("email") as string;
-    const username = formData.get("email") as string;*/
+    const username = formData.get("email") as string;
     const supabase = createClient();
-
+    
     const { error } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
-
+    
     if (error) {
       return redirect("/login?message=Could not authenticate user");
     }
-
+    
     return redirect("/protected");
-  };
+  };*/
 
   const signUp = async (formData: FormData) => {
     "use server";
@@ -79,29 +79,13 @@ export default function SignUpPage({
       </Link>
 
       <form className="animate-in flex-1 flex flex-col w-full justify-center gap-2">
-        {/*
-        
-         name
-
-         */}
-
-        <label className="text-md" htmlFor="name">
-          name
-        </label>
-        <input
-          className="rounded-md px-4 py-2 bg-inherit border mb-6"
-          name="name"
-          placeholder="your name"
-          required
-        />
-
         {/* 
 
         username 
         
         */}
 
-        <label className="text-md" htmlFor="username">
+        {/*<label className="text-md" htmlFor="username">
           username
         </label>
         <input
@@ -115,7 +99,7 @@ export default function SignUpPage({
         
         email 
         
-        */}
+      */}
         <label className="text-md" htmlFor="email">
           email
         </label>

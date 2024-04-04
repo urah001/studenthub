@@ -6,20 +6,18 @@ import AboutPage from "@/components/AboutSchhub";
 import { Button } from "@/components @/app /ui/button";
 import SignInAuthBtn from "./SignUp/SignUp-AuthBtn";
 import { redirect } from "next/navigation";
+import { useRouter } from "next/router";
 
 export default async function Index() {
   //create supabase client
-  const supabase = createClient();
 
   //collect the user data from the created client and check if they are authenticated
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
 
   /*  
   
   
   */
+
   const canInitSupabaseClient = () => {
     // This function is just for the interactive tutorial.
     // Feel free to remove it once you have Supabase connected.
