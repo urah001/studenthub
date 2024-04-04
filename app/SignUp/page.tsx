@@ -99,7 +99,7 @@ export default function SignUpPage({
         
         email 
         
-      */}
+        */}
         <label className="text-md" htmlFor="email">
           email
         </label>
