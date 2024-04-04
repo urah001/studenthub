@@ -1,4 +1,11 @@
-// this page is the foundation of the whole page , the whole pages lie on this as the background
+/* 
+
+this page is the foundation of the whole page , the whole pages lie on this as the background
+//remeber box sizing:border-box; and margin :0;
+main => update-page and protected-page => creating-navigation => creating-main-middle-page
+add border left on the nav
+*/
+
 import React from "react";
 //import "../globals.css";
 import {
@@ -25,10 +32,12 @@ import AuthButton from "./AuthButton";
 //import "bootstrap/dist/css/bootstrap.css";
 
 const Navigation_Item = [
+  /*
   {
-    title: "schoolhub",
+    title: "",
     icon: FaSchool,
   },
+  */
   {
     title: "home",
     icon: House,
@@ -64,6 +73,7 @@ const Navigation = () => {
 
           <section className="fixed  z-20 max-w-[20%] flex flex-col h-screen items-stretch space-y-4">
             <div className="flex flex-col h-full space-y-4 mt-8  ">
+              <FaSchool size={30} className="ml-16" />
               {Navigation_Item.map((item) => (
                 <Link
                   className="hover:primary transition duration-200 rounded-3xl flex items-center justify-center space-x-4 mt-4 px-2 py-1"
