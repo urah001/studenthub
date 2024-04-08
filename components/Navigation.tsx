@@ -72,7 +72,7 @@ const Navigation = () => {
           {/*left side bar for navigation*/}
 
           <section className="fixed  z-20 max-w-[20%] flex flex-col h-screen items-stretch space-y-4">
-            <div className="flex flex-col h-full space-y-4 mt-8  s">
+            <div className="flex flex-col h-full space-y-4 mt-8 ">
               <FaSchool size={30} className="ml-16" />
               {Navigation_Item.map((item) => (
                 <Link
