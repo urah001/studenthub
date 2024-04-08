@@ -15,7 +15,8 @@ export default async function Index() {
 
   /*  
   
-  
+  this is the main middle branch 
+   
   */
 
   const canInitSupabaseClient = () => {
