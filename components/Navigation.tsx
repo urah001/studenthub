@@ -25,6 +25,7 @@ import {
 } from "react-bootstrap-icons";
 import { FaBell, FaSchool } from "react-icons/fa";
 import Link from "next/link";
+import AuthButton from "./AuthButton";
 //import Main from "../Main/page";
 //import Explore from "../explore/page";
 //import "./Navigation.css";
@@ -66,12 +67,12 @@ const Navigation_Item = [
 const Navigation = () => {
   return (
     <>
-      <div className="bg-inherit h-full w-full flex justify-center items-center relative ">
+      <div className="bg-inherit h-full flex justify-center items-center relative right-0  ">
         <div className="max-w-screen-xl text-inherit w-full h-full flex relative">
           {/*left side bar for navigation*/}
 
-          <section className="fixed z-20 w-[275] flex flex-col h-screen items-stretch space-y-4">
-            <div className="flex flex-col h-full space-y-4 mt-8  ">
+          <section className="fixed  z-20 max-w-[20%] flex flex-col h-screen items-stretch space-y-4">
+            <div className="flex flex-col h-full space-y-4 mt-8 ">
               <FaSchool size={30} className="ml-16" />
               {Navigation_Item.map((item) => (
                 <Link
@@ -90,13 +91,14 @@ const Navigation = () => {
               </button>
             </div>
             <button className="rounded-full flex items-center space-x-2 bg-transparent m-4 text-2xl text-center hover:bg-opacity-70 transition duration-200 hover:bg-white/20 w-full">
-              <div className="flex items-center space-x-2">
+              <AuthButton />
+              {/*<div className="flex items-center space-x-2">
                 <div className="rounded-full bg-slate-400 w-8 h-8"></div>
                 <div className="text-left text-sm">
                   <div className="font-semibold text-sm">user Name</div>
                   <div className="text-xs">@userName</div>
                 </div>
-              </div>
+              </div>*/}
               <div className="pl-7 pr-0">
                 <ThreeDots />
               </div>
