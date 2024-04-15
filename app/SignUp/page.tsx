@@ -3,6 +3,9 @@ import { headers } from "next/headers";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import { SubmitButton } from "../login/submit-button";
+import { profile } from "console";
+
+//import { useState } from "react";
 
 export default function SignUpPage({
   searchParams,
@@ -32,12 +35,12 @@ export default function SignUpPage({
 
   const signUp = async (formData: FormData) => {
     "use server";
-
+    //  const [username, setUsername] = useState("");
     const origin = headers().get("origin");
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
-    const name = formData.get("name") as string;
     const username = formData.get("username") as string;
+
     const supabase = createClient();
 
     const { error } = await supabase.auth.signUp({
@@ -45,13 +48,24 @@ export default function SignUpPage({
       password,
       options: {
         emailRedirectTo: `${origin}/auth/callback`,
+        data: {
+          username,
+        },
       },
     });
+    if (!error) {
+      await supabase.from("profiles").select().eq("usernam", username.trim());
+    }
+    // await supabase.from("profile").select().eq("username", username.trim());
+    //if (!error) {
+    //update({ data: { username } });
+    //}
 
     if (error) {
       return redirect("/login?message=Could not authenticate user");
     }
 
+    console.log("hello worlkd");
     return redirect("/login?message=Check email to continue sign in process");
   };
 
@@ -79,25 +93,37 @@ export default function SignUpPage({
       </Link>
 
       <form className="animate-in flex-1 flex flex-col w-full justify-center gap-2">
-        {/* 
-
-        username 
-        
-        */}
-
-        {/*<label className="text-md" htmlFor="username">
+        {/*
+        name
+        <label className="text-md" htmlFor="username">
           username
         </label>
         <input
           className="rounded-md px-4 py-2 bg-inherit border mb-6"
           type="text"
           name="username"
-          placeholder="@...."
+          placeholder="jdoe.."
+        />
+        */}
+
+        {/* 
+
+username
+
+*/}
+        <label className="text-md" htmlFor="username">
+          username
+        </label>
+        <input
+          className="rounded-md px-4 py-2 bg-inherit border mb-6"
+          type="text"
+          name="username"
+          placeholder="@name"
           required
         />
         {/* 
         
-        email 
+       email
         
         */}
         <label className="text-md" htmlFor="email">
@@ -107,7 +133,7 @@ export default function SignUpPage({
           className="rounded-md px-4 py-2 bg-inherit border mb-6"
           type="text"
           name="email"
-          placeholder="you@example.com"
+          placeholder="you@exampl.com"
           required
         />
 

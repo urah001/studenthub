@@ -17,7 +17,7 @@ const Explore = () => {
               id="searchBox"
               type="text"
               placeholder="search"
-              className=" w-full h-full focus:border-primary  focus:border outline-none bg-background-900/90 border-none  rounded-xl py-2 px-8"
+              className=" w-full h-full focus:border-primary  focus:border outline-none rounded-md px-4 bg-inherit border mb-6"
             />
           </div>
           <div className="flex flex-col bg-background-900/90 rounded-xl mt-6 ">

@@ -40,8 +40,3 @@ export default async function ProtectedPage() {
     </div>
   );
 }
-/*
-faizah <mash>
-  <khadija>}</khadija>
-</mash>
-*/

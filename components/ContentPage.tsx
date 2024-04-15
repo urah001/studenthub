@@ -90,7 +90,7 @@ async function ContentPage() {
                     <div className="flex items-center w-full justify-between">
                       <div className="flex items-center space-x-1">
                         <div>{user?.email}</div>
-                        <div className="text-gray-500">@web </div>
+                        <div className="text-gray-500">@web</div>
                         <div>
                           <Dot />
                         </div>
