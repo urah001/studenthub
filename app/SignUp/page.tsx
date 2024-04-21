@@ -54,7 +54,7 @@ export default function SignUpPage({
       },
     });
     if (!error) {
-      await supabase.from("profiles").select().eq("usernam", username.trim());
+      await supabase.from("profiles").select().eq("username", username.trim());
     }
     // await supabase.from("profile").select().eq("username", username.trim());
     //if (!error) {
@@ -65,7 +65,6 @@ export default function SignUpPage({
       return redirect("/login?message=Could not authenticate user");
     }
 
-    console.log("hello worlkd");
     return redirect("/login?message=Check email to continue sign in process");
   };
 

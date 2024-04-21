@@ -1,12 +1,12 @@
 {
   /*
-  
-  
-  
+
+
+
   remeber tweet_hashtag == gist_hashtag
   remeber tweet == gist
-  
-  
+
+
   */
 }
 
@@ -35,18 +35,22 @@ import {
 } from "react-bootstrap-icons";
 import { FaRetweet } from "react-icons/fa";
 import Link from "next/link";
+import { GetUser } from "@/app/serverComponent/getUser";
+import GetPosts from "@/app/serverComponent/getPost";
 //   import Navigation from "../Navigation/page";
 //   import Explore from "../explore/page";
 
 async function ContentPage() {
   const supabase = createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  const { data: notes } = await supabase.from("notes").select();
+
+  // const formattedData = notes.map(
+  //   (item) => `ID: ${item.id}, Title: ${item.title}`
+  // );
 
   return (
     <>
-      <div className="h-full bg-background text-foreground flex justify-center items-center ">
+      <div className="w-full h-full bg-background text-foreground flex justify-center items-center w-">
         <div className="max-w-screen-xl w-full h-full flex">
           {/* navigation */}
 
@@ -67,6 +71,7 @@ async function ContentPage() {
               />{" "}
               <div className="w-full justify-between items-center flex ">
                 <div></div>
+                {/* the button at the top to let you post */}
                 <div className="w-full max-w-[100px]">
                   <button className="rounded-full font-bold  text-lg text-center hover:bg-opacity-90 px-4 py-2 w-full transition duration-200 primary">
                     Gist
@@ -76,9 +81,9 @@ async function ContentPage() {
             </div>
 
             <div className=" flex flex-col">
-              {Array.from({ length: 5 }).map((_, i) => (
+              {notes?.reverse().map((item) => (
                 <div
-                  key={i}
+                  key={item}
                   className="border-t-[0.5px] py-2 px-6 border-b-[0.5px] flex space-x-4"
                 >
                   <div>
@@ -89,8 +94,13 @@ async function ContentPage() {
                     {/*account info username and name*/}
                     <div className="flex items-center w-full justify-between">
                       <div className="flex items-center space-x-1">
-                        <div>{user?.email}</div>
-                        <div className="text-gray-500">@web</div>
+                        {/* <div>{user?.email}</div> */}
+                        <div className="text-gray-500">
+                          {/* @{metaData.username} */}
+                          {/* <GetUser /> */}
+                          {/* username  */}
+                          {item.id}
+                        </div>
                         <div>
                           <Dot />
                         </div>
@@ -103,18 +113,20 @@ async function ContentPage() {
 
                     {/* media (comment and image) */}
                     <div className="text-white text-sm">
-                      Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                      {/* Lorem ipsum, dolor sit amet consectetur adipisicing elit.
                       Molestiae quae facilis dolorum? Pariatur optio, provident
                       ducimus est aliquam dolore nesciunt quaerat beatae dolorem
                       vero? Excepturi ipsa voluptatum enim ipsum fuga! Lorem
                       ipsum, dolor sit amet consectetur adipisicing elit. this
                       is a demo text checking to see if it will over flow the
-                      box width or height
+                      box width or height */}
+
+                      <h1> {item.title}</h1>
                     </div>
 
-                    <div className="bg-slate-400 aspect-square w-full h-80 rounded-xl"></div>
+                    {/* <div className="bg-slate-400 aspect-square w-full h-80 rounded-xl"></div> */}
                     {/*activity icon , like, comment , repost, share */}
-                    <div className="flex items-center justify-start space-x-20 my-2 w-full ">
+                    <div className="flex items-center justify-start space-x-40 mt-2 w-full ">
                       {/*love reaction*/}
                       <div className="rounded-full hover:bg-white/20 transition duration-200 p-2 cursor-pointer">
                         <Heart size={20} />
