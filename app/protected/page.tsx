@@ -10,15 +10,15 @@ import Explore from "@/components/Explore";
 //import Navigation from "@/components/Navigation";
 
 export default async function ProtectedPage() {
-  const supabase = createClient();
+  // const supabase = createClient();
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  // const {
+  //   data: { user },
+  // } = await supabase.auth.getUser();
 
-  if (!user) {
-    return redirect("/login");
-  }
+  // if (!user) {
+  //   return redirect("/login");
+  // }
 
   return (
     <div className="flex-1 w-full flex flex-col bg-background">

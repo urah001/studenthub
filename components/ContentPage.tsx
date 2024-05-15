@@ -34,9 +34,9 @@ import {
   ThreeDots,
 } from "react-bootstrap-icons";
 import { FaRetweet } from "react-icons/fa";
-import Link from "next/link";
-import { GetUser } from "@/app/serverComponent/getUser";
-import GetPosts from "@/app/serverComponent/getPost";
+// import Link from "next/link";
+// import { GetUser } from "@/app/serverComponent/getUser";
+// import GetPosts from "@/app/serverComponent/getPost";
 //   import Navigation from "../Navigation/page";
 //   import Explore from "../explore/page";
 
@@ -81,7 +81,7 @@ async function ContentPage() {
             </div>
 
             <div className=" flex flex-col">
-              {notes?.reverse().map((item) => (
+              {notes!.map((item) => (
                 <div
                   key={item}
                   className="border-t-[0.5px] py-2 px-6 border-b-[0.5px] flex space-x-4"
@@ -98,8 +98,7 @@ async function ContentPage() {
                         <div className="text-gray-500">
                           {/* @{metaData.username} */}
                           {/* <GetUser /> */}
-                          {/* username  */}
-                          {item.id}
+                          <p>ID: {item.id}</p>
                         </div>
                         <div>
                           <Dot />
@@ -121,7 +120,7 @@ async function ContentPage() {
                       is a demo text checking to see if it will over flow the
                       box width or height */}
 
-                      <h1> {item.title}</h1>
+                      <h1>Title: {item.title}</h1>
                     </div>
 
                     {/* <div className="bg-slate-400 aspect-square w-full h-80 rounded-xl"></div> */}

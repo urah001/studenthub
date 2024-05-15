@@ -7,6 +7,7 @@ add border left on the nav
 */
 
 import React from "react";
+
 //import "../globals.css";
 import {
   Bag,
@@ -26,6 +27,7 @@ import {
 import { FaBell, FaSchool } from "react-icons/fa";
 import Link from "next/link";
 import AuthButton from "./AuthButton";
+
 //import Main from "../Main/page";
 //import Explore from "../explore/page";
 //import "./Navigation.css";
@@ -51,7 +53,7 @@ const Navigation_Item = [
     icon: Lightbulb,
   },
   {
-    title: "test",
+    title: "submit",
     icon: Chat,
   },
   {
@@ -86,9 +88,9 @@ const Navigation = () => {
                   {item.title !== "schoolhub" && <div>{item.title}</div>}
                 </Link>
               ))}
-              <button className="rounded-full primary text-2xl text-center hover:bg-opacity-90 mt-4 px-6 transition duration-200 ">
+              {/* <button className="rounded-full primary text-2xl text-center hover:bg-opacity-90 mt-4 px-6 transition duration-200 ">
                 GIST
-              </button>
+              </button> */}
             </div>
             <button className="rounded-full flex items-center space-x-2 bg-transparent m-4 text-2xl text-center hover:bg-opacity-70 transition duration-200 hover:bg-white/20 w-full">
               <AuthButton />
