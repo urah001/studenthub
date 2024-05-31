@@ -68,20 +68,19 @@ const Navigation_Item = [
 const Navigation = () => {
   return (
     <>
-      <div className="bg-inherit h-full flex justify-center items-center relative right-0  ">
+      <div className="w-[20%] h-full flex justify-center items-center relative bg-background overflow-hidden">
         <div className="max-w-screen-xl text-inherit w-full h-full flex relative">
           {/*left side bar for navigation*/}
 
-          <section className="fixed  z-20 max-w-[20%] flex flex-col h-screen items-stretch space-y-4">
-            <div className="flex flex-col h-full space-y-4 mt-8 ">
-              <FaSchool size={30} className="ml-16" />
+          <section className="fixed w-[10px] flex flex-col h-screen items-stretch space-y-4">
+            <div className="flex flex-col h-full items-stretch space-y-4 mt-4 ">
               {Navigation_Item.map((item) => (
                 <Link
-                  className="hover:primary transition duration-200 rounded-3xl flex items-center justify-center space-x-4 mt-4 px-2 py-1 font-bold"
+                  className="hover:primary text-lg transition duration-200 rounded-3xl flex items-center justify-start space-x-4 mt-4 px-6 py-2 font-bold w-fit"
                   href={`/${item.title.toLowerCase()}`}
                   key={item.title}
                 >
-                  <div className="absolute left-8">
+                  <div className="">
                     <item.icon size={20} />
                   </div>
                   {item.title !== "schoolhub" && <div>{item.title}</div>}

@@ -12,8 +12,7 @@ function MyForm() {
     <form action={handleSubmitGist as any}>
       <div className="flex flex-col w-full h-full">
         <label htmlFor="GistField"></label>
-        <input
-          type="text"
+        <textarea
           className="w-full text-2xl h-full bg-transparent placeholder-gray-600 border-gray-600 p-4  outline-none border-none"
           placeholder="say what you feel..."
           name="gist"
