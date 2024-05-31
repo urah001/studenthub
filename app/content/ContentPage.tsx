@@ -1,13 +1,25 @@
+// if need b it was timeStampz
+
+{
+  /*
+
+
+
+  remeber tweet_hashtag == gist_hashtag
+  remeber tweet == gist
+
+
+  */
+}
 import React from "react";
 import { createClient } from "@/utils/supabase/server";
-
+//import "../globals.css";
 import {
   Bag,
   BagCheck,
   BagX,
   Chat,
   ChatLeft,
-  ChatText,
   Dot,
   Gear,
   Google,
@@ -16,8 +28,6 @@ import {
   House,
   Lightbulb,
   Magnet,
-  Messenger,
-  Save,
   Search,
   SearchHeart,
   Send,
@@ -30,7 +40,6 @@ import { Database } from "@/types/supabase";
 import { toast } from "sonner";
 import dayjs, { Dayjs } from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
-import { revalidateTag } from "next/cache";
 dayjs.extend(relativeTime);
 
 async function ContentPage() {
@@ -57,16 +66,15 @@ async function ContentPage() {
       })[]
     >();
   if (error) {
-    return error;
+    return toast(error.message);
   }
 
   console.log("gist-----", gists![0].profiles, "error====", error);
-  console.log(revalidateTag);
-
+  // console.log("metadata===", metadata);
   return (
     <>
-      <div className="w-full h-full bg-background text-foreground flex justify-center items-center ">
-        <div className="max-w-screen-xl w-full h-full flex relative">
+      <div className="w-full h-full bg-background text-foreground flex justify-center items-center w-">
+        <div className="max-w-screen-xl w-full h-full flex">
           {/* navigation */}
 
           {/*main content */}
@@ -95,7 +103,6 @@ async function ContentPage() {
                     <div className="flex items-center w-full justify-between">
                       <div className="flex items-center space-x-1">
                         <div className="font-bold">
-                          {/* full_name */}
                           {gists.profiles.full_name ?? " "}{" "}
                         </div>
                         <div className="text-gray-500">
@@ -108,7 +115,7 @@ async function ContentPage() {
                           {dayjs(gists.created_at).fromNow()}
                         </div>
                       </div>
-                      <div className=" rounded-full hover:bg-white/20 transition duration-200 p-2 cursor-pointer">
+                      <div className="rounded-full hover:bg-white/20 transition duration-200 p-2 cursor-pointer">
                         <ThreeDots />
                       </div>
                     </div>
@@ -120,14 +127,14 @@ async function ContentPage() {
 
                     {/* <div className="bg-slate-400 aspect-square w-full h-80 rounded-xl"></div> */}
                     {/*activity icon , like, comment , repost, share */}
-                    <div className="flex  items-center justify-evenly space-x-28 mt-2 w-full ">
+                    <div className="flex items-center justify-start space-x-40 mt-2 w-full ">
                       {/*love reaction*/}
                       <div className="rounded-full hover:bg-white/20 transition duration-200 p-2 cursor-pointer">
                         <Heart size={20} />
                       </div>
                       {/*message*/}
                       <div className="rounded-full hover:bg-white/20 transition duration-200 p-2 cursor-pointer">
-                        <ChatText size={20} />
+                        <ChatLeft size={20} />
                       </div>
                       {/*repost*/}
                       <div className="rounded-full hover:bg-white/20 transition duration-200 p-2 cursor-pointer">
@@ -136,10 +143,6 @@ async function ContentPage() {
                       {/*share or send */}
                       <div className="rounded-full hover:bg-white/20 transition duration-200 p-2 cursor-pointer">
                         <Send size={20} />
-                      </div>
-                      {/* saved for future */}
-                      <div className="rounded-full hover:bg-white/20 transition duration-200 p-2 cursor-pointer">
-                        <Save size={20} />
                       </div>
                     </div>
                   </div>
