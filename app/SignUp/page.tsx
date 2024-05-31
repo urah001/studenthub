@@ -40,6 +40,7 @@ export default function SignUpPage({
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
     const username = formData.get("username") as string;
+    const full_name = formData.get("full_name") as string;
 
     const supabase = createClient();
 
@@ -50,16 +51,13 @@ export default function SignUpPage({
         emailRedirectTo: `${origin}/auth/callback`,
         data: {
           username,
+          full_name,
         },
       },
     });
     if (!error) {
       await supabase.from("profiles").select().eq("username", username.trim());
     }
-    // await supabase.from("profile").select().eq("username", username.trim());
-    //if (!error) {
-    //update({ data: { username } });
-    //}
 
     if (error) {
       return redirect("/login?message=Could not authenticate user");
@@ -92,24 +90,19 @@ export default function SignUpPage({
       </Link>
 
       <form className="animate-in flex-1 flex flex-col w-full justify-center gap-2">
-        {/*
-        name
-        <label className="text-md" htmlFor="username">
-          username
+        {/* name */}
+        <label className="text-md" htmlFor="full_name">
+          name
         </label>
         <input
           className="rounded-md px-4 py-2 bg-inherit border mb-6"
           type="text"
-          name="username"
-          placeholder="jdoe.."
+          name="full_name"
+          placeholder="john-doe"
+          required
         />
-        */}
 
-        {/* 
-
-username
-
-*/}
+        {/* username */}
         <label className="text-md" htmlFor="username">
           username
         </label>

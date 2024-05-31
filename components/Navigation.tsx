@@ -92,15 +92,8 @@ const Navigation = () => {
                 GIST
               </button> */}
             </div>
-            <button className="rounded-full flex items-center space-x-2 bg-transparent m-4 text-2xl text-center hover:bg-opacity-70 transition duration-200 hover:bg-white/20 w-full">
+            <button className="rounded-full flex items-center space-x-2 bg-transparent m-4 text-2xl text-center hover:bg-background-70 transition duration-200 hover:bg-background/20 w-full">
               <AuthButton />
-              {/*<div className="flex items-center space-x-2">
-                <div className="rounded-full bg-slate-400 w-8 h-8"></div>
-                <div className="text-left text-sm">
-                  <div className="font-semibold text-sm">user Name</div>
-                  <div className="text-xs">@userName</div>
-                </div>
-              </div>*/}
               <div className="pl-7 pr-0">
                 <ThreeDots />
               </div>
