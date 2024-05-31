@@ -12,6 +12,7 @@ import {
   Bag,
   BagCheck,
   BagX,
+  Book,
   Chat,
   Gear,
   Google,
@@ -52,23 +53,27 @@ const Navigation_Item = [
     icon: Lightbulb,
   },
   {
+    title: "study",
+    icon: Book,
+  },
+  {
     title: "submit",
     icon: Chat,
   },
   {
-    title: "setting",
-    icon: Gear,
-  },
-  {
     title: "explore",
     icon: Hash,
+  },
+  {
+    icon: Gear,
+    title: "setting",
   },
 ];
 
 const Navigation = () => {
   return (
     <>
-      <div className="w-[20%] h-full flex justify-center items-center relative bg-background overflow-hidden">
+      <div className="w-[30%] h-full flex justify-center items-center relative bg-background overflow-hidden">
         <div className="max-w-screen-xl text-inherit w-full h-full flex relative">
           {/*left side bar for navigation*/}
 
@@ -76,12 +81,12 @@ const Navigation = () => {
             <div className="flex flex-col h-full items-stretch space-y-4 mt-4 ">
               {Navigation_Item.map((item) => (
                 <Link
-                  className="hover:primary text-lg transition duration-200 rounded-3xl flex items-center justify-start space-x-4 mt-4 px-6 py-2 font-bold w-fit"
+                  className="hover:primary text-lg transition duration-200 rounded-3xl flex items-center justify-start space-x-4 mt-2 px-4 py-2 font-bold w-fit"
                   href={`/${item.title.toLowerCase()}`}
                   key={item.title}
                 >
                   <div className="">
-                    <item.icon size={20} />
+                    <item.icon size={18} />
                   </div>
                   {item.title !== "schoolhub" && <div>{item.title}</div>}
                 </Link>

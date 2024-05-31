@@ -132,7 +132,7 @@ async function ContentPage() {
                   </div>
                   {/*message*/}
                   <div className="rounded-full hover:bg-white/20 transition duration-200 p-2 cursor-pointer">
-                    <ChatLeft size={20} />
+                    <Chat size={20} />
                   </div>
                   {/*repost*/}
                   <div className="rounded-full hover:bg-white/20 transition duration-200 p-2 cursor-pointer">
