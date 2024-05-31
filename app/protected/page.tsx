@@ -10,26 +10,8 @@ import Explore from "@/components/Explore";
 //import Navigation from "@/components/Navigation";
 
 export default async function ProtectedPage() {
-  // const supabase = createClient();
-
-  // const {
-  //   data: { user },
-  // } = await supabase.auth.getUser();
-
-  // if (!user) {
-  //   return redirect("/login");
-  // }
-
   return (
     <div className="flex-1 w-full flex flex-col bg-background">
-      {/*} <div className="w-full h-full">
-        <nav className="w-full flex justify-center h-8">
-          <div className="w-full max-w-2xl flex justify-between items-center  text-sm  right-0">
-            <AuthButton />
-          </div>
-        </nav>
-  </div>*/}
-
       <div className="animate-in flex-1 flex flex-row max-w-[100] px-3 h-full bg-background text-foreground justify-center items-center relative">
         <main className="flex-1 flex flex-row max-w-screen-xl w-full h-full relative ">
           <Navigation />
