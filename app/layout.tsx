@@ -22,15 +22,15 @@ export default function RootLayout({
     <html lang="en" className={GeistSans.className}>
       <body className="bg-background text-foreground">
         <main className="min-h-screen flex flex-col items-center">
-          {/*  <ThemeProvider
+          <ThemeProvider
             attribute="class"
             defaultTheme="system"
             enableSystem
             disableTransitionOnChange
-  >*/}
-          {children}
-          <Toaster />
-          {/*</ThemeProvider>*/}
+          >
+            {children}
+            <Toaster />
+          </ThemeProvider>
         </main>
       </body>
     </html>

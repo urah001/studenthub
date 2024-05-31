@@ -8,7 +8,6 @@ add border left on the nav
 
 import React from "react";
 
-//import "../globals.css";
 import {
   Bag,
   BagCheck,
@@ -78,12 +77,12 @@ const Navigation = () => {
               <FaSchool size={30} className="ml-16" />
               {Navigation_Item.map((item) => (
                 <Link
-                  className="hover:primary transition duration-200 rounded-3xl flex items-center justify-center space-x-4 mt-4 px-2 py-1"
+                  className="hover:primary transition duration-200 rounded-3xl flex items-center justify-center space-x-4 mt-4 px-2 py-1 font-bold"
                   href={`/${item.title.toLowerCase()}`}
                   key={item.title}
                 >
                   <div className="absolute left-8">
-                    <item.icon size={28} />
+                    <item.icon size={20} />
                   </div>
                   {item.title !== "schoolhub" && <div>{item.title}</div>}
                 </Link>
