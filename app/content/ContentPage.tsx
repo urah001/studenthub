@@ -29,7 +29,6 @@ async function ContentPage() {
             res.data.map((gists, i) => <Gist key={gists.id} gists={gists} />)}
         </div>
       </main>
-      {/*<Explore />*/}
     </>
   );
 }
