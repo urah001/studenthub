@@ -1,16 +1,3 @@
-// if need b it was timeStampz
-
-{
-  /*
-
-
-
-  remeber tweet_hashtag == gist_hashtag
-  remeber tweet == gist
-
-
-  */
-}
 import React from "react";
 import MyForm from "@/app/gistSubmit/create-form";
 import dayjs, { Dayjs } from "dayjs";
@@ -24,8 +11,6 @@ async function ContentPage() {
   console.log(res?.data);
   return (
     <>
-      {/* navigation */}
-
       {/*main content */}
       <main className="flex w-full h-full min-h-screen flex-col border-l-[0.5px] border-r-[0.5px] border-gray-600">
         <h1 className="text-xl font-bold p-2  backdrop-blur sticky top-0">
