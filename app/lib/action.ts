@@ -63,14 +63,4 @@ export async function handleSubmitGist(
     };
     //toast.error(" gist not sent ");
   }
-
-  //  console.log("raw---data ", rawFormData, "user---metadata", metadata?.id);
-
-  //const { title } = gist.parse({});
-  //const getUser = new FormData();
-  // getUser.append("username", metadata.username);
-
-  // Test it out:
-  //console.log(rawFormData, user);
-  //revalidatePath("/explore");
 }

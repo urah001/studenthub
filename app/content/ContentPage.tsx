@@ -3,12 +3,12 @@ import MyForm from "@/app/gistSubmit/create-form";
 import dayjs, { Dayjs } from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { Gist } from "../gist/Gist";
-import { getGist } from "../gist/getGist";
+import { getGist } from "../gist/queries";
 dayjs.extend(relativeTime);
 
 async function ContentPage() {
   const res = await getGist();
-  console.log(res?.data);
+
   return (
     <>
       {/*main content */}

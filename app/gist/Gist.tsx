@@ -1,43 +1,21 @@
-import React from "react";
-import { createClient } from "@/utils/supabase/server";
-import { SupabaseClient } from "@supabase/supabase-js";
-//import "../globals.css";
-import {
-  Bag,
-  BagCheck,
-  BagX,
-  Chat,
-  ChatLeft,
-  Dot,
-  Gear,
-  Google,
-  Hash,
-  Heart,
-  House,
-  Lightbulb,
-  Magnet,
-  Search,
-  SearchHeart,
-  Send,
-  Share,
-  ThreeDots,
-} from "react-bootstrap-icons";
+"use client";
+import React, { useTransition } from "react";
+import { Chat, Dot, Heart, Send, ThreeDots } from "react-bootstrap-icons";
 import { FaRetweet } from "react-icons/fa";
-import MyForm from "@/app/gistSubmit/create-form";
-import { toast } from "sonner";
 import dayjs, { Dayjs } from "dayjs";
-import { Database } from "@/types/supabase";
 import relativeTime from "dayjs/plugin/relativeTime";
-import { GistType } from "./getGist";
+import { GistType } from "./queries";
+import { likeGist } from "./mutation";
+
 dayjs.extend(relativeTime);
 
 type Gistprops = {
   gists: GistType;
 };
 
-//3.22
-
 export const Gist = ({ gists }: Gistprops) => {
+  let [isLikePending, startTransition] = useTransition();
+
   return (
     <div>
       <div
@@ -75,13 +53,18 @@ export const Gist = ({ gists }: Gistprops) => {
             <h1> {gists.text}</h1>
           </div>
 
-          {/* <div className="bg-slate-400 aspect-square w-full h-80 rounded-xl"></div> */}
           {/*activity icon , like, comment , repost, share */}
           <div className="flex items-center justify-start space-x-40 mt-2 w-full ">
             {/*love reaction*/}
-            <div className="rounded-full hover:bg-white/20 transition duration-200 p-2 cursor-pointer">
+            <button
+              disabled={isLikePending}
+              onClick={() => {
+                startTransition(() => likeGist(gists.id));
+              }}
+              className="rounded-full hover:bg-white/20 transition duration-200 p-2 cursor-pointer"
+            >
               <Heart size={20} />
-            </div>
+            </button>
             {/*message*/}
             <div className="rounded-full hover:bg-white/20 transition duration-200 p-2 cursor-pointer">
               <Chat size={20} />
