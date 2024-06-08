@@ -2,29 +2,9 @@ import React from "react";
 import { createClient } from "@/utils/supabase/server";
 import { SupabaseClient } from "@supabase/supabase-js";
 //import "../globals.css";
-import {
-  Bag,
-  BagCheck,
-  BagX,
-  Chat,
-  ChatLeft,
-  Dot,
-  Gear,
-  Google,
-  Hash,
-  Heart,
-  House,
-  Lightbulb,
-  Magnet,
-  Search,
-  SearchHeart,
-  Send,
-  Share,
-  ThreeDots,
-} from "react-bootstrap-icons";
+import { Chat, Dot, Heart, Send, ThreeDots } from "react-bootstrap-icons";
 import { FaRetweet } from "react-icons/fa";
-import MyForm from "@/app/gistSubmit/create-form";
-import { toast } from "sonner";
+
 import dayjs, { Dayjs } from "dayjs";
 import { Database } from "@/types/supabase";
 import relativeTime from "dayjs/plugin/relativeTime";
