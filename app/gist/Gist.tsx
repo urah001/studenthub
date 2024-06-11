@@ -6,7 +6,7 @@ import dayjs, { Dayjs } from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { getLikeCount, GistType } from "./queries";
 
-import LikeBtn from "./likeBtn";
+import LikeBtn from "./likeGist";
 
 dayjs.extend(relativeTime);
 
@@ -16,7 +16,7 @@ type Gistprops = {
 
 export const Gist = ({ gists }: Gistprops) => {
   const getGistLikesCount = getLikeCount(gists.id);
-  //console.log(getGistLikesCount);
+  console.log(getGistLikesCount);
 
   return (
     <div>

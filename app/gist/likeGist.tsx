@@ -3,7 +3,6 @@
 import React, { useTransition } from "react";
 import { likeGist } from "./mutation";
 import { Heart } from "react-bootstrap-icons";
-import { GistType } from "./queries";
 
 type LikeGistprops = {
   gistId: string;

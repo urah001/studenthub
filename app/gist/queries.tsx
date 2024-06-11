@@ -1,6 +1,10 @@
 "use server";
 import { Database } from "@/types/supabase";
 import { supabase } from ".";
+import { SupabaseClient } from "@supabase/supabase-js";
+
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supbaseSecretKey = process.env.SUPABASE_SECRET_KEY;
 
 export type GistType = Database["public"]["Tables"]["gists"]["Row"] & {
   profiles: Pick<
@@ -29,10 +33,11 @@ export const getGist = async () => {
 };
 
 export const getLikeCount = async (gistId: string) => {
+  //const supabaseServer = new SupabaseClient(supabaseUrl, supbaseSecretKey);
   const res = await supabase
     .from("likes")
-    .select("*", { count: "exact" })
-    .eq("gistId", gistId);
+    .select("id", { count: "exact" })
+    .eq("gist_id", gistId);
 
   return res;
 };
