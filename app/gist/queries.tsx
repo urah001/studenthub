@@ -31,8 +31,8 @@ export const getGist = async () => {
 export const getLikeCount = async (gistId: string) => {
   const res = await supabase
     .from("likes")
-    .select("count(*)")
+    .select("*", { count: "exact" })
     .eq("gistId", gistId);
-  console.table(res);
+
   return res;
 };

@@ -1,11 +1,12 @@
-"use client";
-import React, { useTransition } from "react";
+"use server";
+
 import { Chat, Dot, Heart, Send, ThreeDots } from "react-bootstrap-icons";
 import { FaRetweet } from "react-icons/fa";
 import dayjs, { Dayjs } from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
-import { GistType } from "./queries";
-import { likeGist } from "./mutation";
+import { getLikeCount, GistType } from "./queries";
+
+import LikeBtn from "./likeBtn";
 
 dayjs.extend(relativeTime);
 
@@ -14,7 +15,8 @@ type Gistprops = {
 };
 
 export const Gist = ({ gists }: Gistprops) => {
-  let [isLikePending, startTransition] = useTransition();
+  const getGistLikesCount = getLikeCount(gists.id);
+  //console.log(getGistLikesCount);
 
   return (
     <div>
@@ -49,22 +51,17 @@ export const Gist = ({ gists }: Gistprops) => {
           </div>
 
           {/* media (comment and image) */}
-          <div className="text-white text-sm">
-            <h1> {gists.text}</h1>
+          <div className="text-white text-lm">
+            <div className="whitespace-pre-wrap break-words ">
+              {""}
+              {gists.text}
+            </div>
           </div>
 
           {/*activity icon , like, comment , repost, share */}
           <div className="flex items-center justify-start space-x-40 mt-2 w-full ">
             {/*love reaction*/}
-            <button
-              disabled={isLikePending}
-              onClick={() => {
-                startTransition(() => likeGist(gists.id));
-              }}
-              className="rounded-full hover:bg-white/20 transition duration-200 p-2 cursor-pointer"
-            >
-              <Heart size={20} />
-            </button>
+            <LikeBtn gistId={gists.id} />
             {/*message*/}
             <div className="rounded-full hover:bg-white/20 transition duration-200 p-2 cursor-pointer">
               <Chat size={20} />
