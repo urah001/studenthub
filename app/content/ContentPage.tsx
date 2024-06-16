@@ -4,11 +4,15 @@ import dayjs, { Dayjs } from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { Gist } from "../gist/Gist";
 import { getGist } from "../gist/queries";
+import { supabase } from "../gist";
 dayjs.extend(relativeTime);
 
 async function ContentPage() {
   const res = await getGist();
-
+  const getMetaData = await supabase.auth.getUser();
+  const metaData = getMetaData.data;
+  const user = metaData.user;
+  //console.log(user!.id);
   return (
     <>
       {/*main content */}
@@ -26,7 +30,13 @@ async function ContentPage() {
           {res?.error && <div>something wrong with server</div>}
 
           {res?.data &&
-            res.data.map((gists, i) => <Gist key={gists.id} gists={gists} />)}
+            res.data.map((gist, i) => (
+              <Gist
+                key={gist.id}
+                gist={gist}
+                currentUserId={getMetaData.data.user!.id}
+              />
+            ))}
         </div>
       </main>
     </>

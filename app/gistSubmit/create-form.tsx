@@ -1,8 +1,7 @@
 "use client";
 import { handleSubmitGist } from "@/app/lib/action";
 import { useRef, useState } from "react";
-import { createClient } from "@/utils/supabase/server";
-import { toast } from "sonner";
+
 import SubmitGistBtn from "./submitBtn";
 
 function MyForm() {

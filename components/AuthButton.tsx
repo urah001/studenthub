@@ -4,7 +4,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { Button } from "@/components @/app /ui/button";
 
-export default async function AuthButton() {
+const AuthButton = async () => {
   const supabase = createClient();
 
   const {
@@ -20,8 +20,9 @@ export default async function AuthButton() {
   };
 
   return user ? (
-    <div className="flex items-center ">
-      {/*{user.email}!*/}
+    <div className="flex items-center flex-col ">
+      <div className="text-sm">{user.email}</div>
+
       <form action={signOut}>
         <Button
           variant={"outline"}
@@ -41,4 +42,5 @@ export default async function AuthButton() {
       </Button>
     </Link>
   );
-}
+};
+export default AuthButton;

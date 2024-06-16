@@ -1,37 +1,16 @@
-/* 
-
-this page is the foundation of the whole page , the whole pages lie on this as the background
-//remeber box sizing:border-box; and margin :0;
-main => update-page and protected-page => creating-navigation => creating-main-middle-page
-add border left on the nav
-*/
-
 import React from "react";
-
 import {
-  Bag,
-  BagCheck,
-  BagX,
   Book,
   Chat,
   Gear,
-  Google,
   Hash,
   House,
   Lightbulb,
-  Magnet,
   Search,
-  SearchHeart,
   ThreeDots,
 } from "react-bootstrap-icons";
-import { FaBell, FaSchool } from "react-icons/fa";
 import Link from "next/link";
 import AuthButton from "./AuthButton";
-
-//import Main from "../Main/page";
-//import Explore from "../explore/page";
-//import "./Navigation.css";
-//import "bootstrap/dist/css/bootstrap.css";
 
 const Navigation_Item = [
   /*
