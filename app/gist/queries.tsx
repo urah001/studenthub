@@ -1,10 +1,7 @@
 "use server";
 import { Database } from "@/types/supabase";
-import { supabase } from ".";
-import { SupabaseClient } from "@supabase/supabase-js";
-
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const supbaseSecretKey = process.env.SUPABASE_SECRET_KEY;
+import { supabase, supabaseServer } from ".";
+//import { boolean } from "zod";
 
 export type GistType = Database["public"]["Tables"]["gists"]["Row"] & {
   profiles: Pick<
@@ -33,11 +30,31 @@ export const getGist = async () => {
 };
 
 export const getLikeCount = async (gistId: string) => {
-  //const supabaseServer = new SupabaseClient(supabaseUrl, supbaseSecretKey);
-  const res = await supabase
+  const res = await supabaseServer
     .from("likes")
     .select("id", { count: "exact" })
     .eq("gist_id", gistId);
 
   return res;
+};
+
+export const isLiked = async ({
+  gistId,
+  userId,
+}: {
+  gistId: string;
+  userId?: string;
+}) => {
+  if (!userId) return false;
+  const { data, error } = await supabaseServer
+    .from("likes")
+    .select("id")
+    .eq("user_id", userId)
+    .eq("gist_id", gistId)
+    .single();
+  // if (error) {
+  //   console.log("error check , checking like status: ", error);
+  // }
+  //console.log(userId);
+  return Boolean(data?.id);
 };
