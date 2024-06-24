@@ -1,7 +1,6 @@
 "use server";
 import { Database } from "@/types/supabase";
 import { supabase, supabaseServer } from ".";
-//import { boolean } from "zod";
 
 export type GistType = Database["public"]["Tables"]["gists"]["Row"] & {
   profiles: Pick<

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useTransition } from "react";
-import { likeGist } from "./mutation";
+import { likeGist, unLikeGist } from "./mutation";
 import { Heart, HeartFill } from "react-bootstrap-icons";
 
 type LikeGistprops = {
@@ -21,7 +21,9 @@ export const LikeBtn = ({
     <button
       disabled={isLikePending}
       onClick={() => {
-        startTransition(() => likeGist(gistId));
+        startTransition(() =>
+          isUserHasLiked ? unLikeGist(gistId) : likeGist(gistId)
+        );
       }}
       className="rounded-full flex items-center space-x-2 hover:bg-white/20 transition duration-200 p-1 cursor-pointer"
     >
