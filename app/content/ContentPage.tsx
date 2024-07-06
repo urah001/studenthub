@@ -4,15 +4,31 @@ import dayjs, { Dayjs } from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { Gist } from "../gist/Gist";
 import { getGist } from "../gist/queries";
-import { supabase } from "../gist";
+import { supabase, supabaseServer } from "../gist";
 dayjs.extend(relativeTime);
+
+export const fetchMetadata = async () => {
+  try {
+    const res = await getGist();
+    const getMetaData = await supabaseServer.auth.getUser();
+
+    if (getMetaData.data.user) {
+      return getMetaData.data.user.id;
+    } else {
+      console.error("User data is null");
+      return null;
+    }
+  } catch (error) {
+    console.error("Error fetching metadata:", error);
+    return null;
+  }
+};
 
 async function ContentPage() {
   const res = await getGist();
-  const getMetaData = await supabase.auth.getUser();
-  const metaData = getMetaData.data;
-  const user = metaData.user;
-  //console.log(user!.id);
+  const getMetaData = await supabaseServer.auth.getUser();
+  const metaData = getMetaData.data.user!.id;
+
   return (
     <>
       {/*main content */}
@@ -27,15 +43,11 @@ async function ContentPage() {
           <MyForm />
         </div>
         <div className=" flex flex-col w-full">
-          {res?.error && <div>something wrong with server</div>}
+          {res?.error && <div>review your network and try again </div>}
 
           {res?.data &&
             res.data.map((gist, i) => (
-              <Gist
-                key={gist.id}
-                gist={gist}
-                currentUserId={getMetaData.data.user!.id}
-              />
+              <Gist key={gist.id} gist={gist} currentUserId={metaData} />
             ))}
         </div>
       </main>

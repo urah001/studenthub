@@ -42,7 +42,7 @@ export const isLiked = async ({
   userId,
 }: {
   gistId: string;
-  userId?: string;
+  userId: string;
 }) => {
   if (!userId) return false;
   const { data, error } = await supabaseServer

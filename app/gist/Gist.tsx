@@ -6,12 +6,13 @@ import dayjs, { Dayjs } from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { getLikeCount, GistType, isLiked } from "./queries";
 import LikeBtn from "./likeGist";
+import { metaData, supabaseServer } from ".";
 
 dayjs.extend(relativeTime);
 
 type Gistprops = {
   gist: GistType;
-  currentUserId?: string | undefined;
+  currentUserId: string;
 };
 
 export const Gist = async ({ gist, currentUserId }: Gistprops) => {
@@ -22,7 +23,8 @@ export const Gist = async ({ gist, currentUserId }: Gistprops) => {
     userId: currentUserId,
   });
 
-  console.log(isUserHasLiked);
+  //console.log(isUserHasLiked);
+  console.log("gist id", gist.id, "current user id", currentUserId);
 
   return (
     <div>

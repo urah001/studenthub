@@ -9,7 +9,7 @@ export const likeGist = async (gistId: string) => {
   const { data, error } = await supabase.from("likes").insert({
     id: randomUUID(),
     gist_id: gistId,
-    user_id: (await metaData).data.user?.id,
+    user_id: (await metaData).data.user!.id,
   });
   console.log({ data, error });
   revalidatePath("/");
@@ -19,7 +19,7 @@ export const unLikeGist = async (gistId: string) => {
   const { data, error } = await supabaseServer
     .from("likes")
     .delete()
-    .eq("user_id", (await metaData).data.user?.id)
+    .eq("user_id", (await metaData).data.user!.id)
     .eq("gist_id", gistId);
 
   revalidatePath("/");
