@@ -6,7 +6,7 @@ import dayjs, { Dayjs } from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { getLikeCount, GistType, isLiked } from "./queries";
 import LikeBtn from "./likeGist";
-import { metaData, supabaseServer } from ".";
+import { metaData, supabase, supabaseServer } from ".";
 
 dayjs.extend(relativeTime);
 
@@ -16,6 +16,10 @@ type Gistprops = {
 };
 
 export const Gist = async ({ gist, currentUserId }: Gistprops) => {
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
   const getGistLikesCount = await getLikeCount(gist.id);
 
   const isUserHasLiked = await isLiked({
@@ -23,8 +27,8 @@ export const Gist = async ({ gist, currentUserId }: Gistprops) => {
     userId: currentUserId,
   });
 
-  //console.log(isUserHasLiked);
-  console.log("gist id", gist.id, "current user id", currentUserId);
+  console.log(isUserHasLiked);
+  //console.log("gist id", gist.id, "current user id", user?.id);
 
   return (
     <div>
@@ -76,6 +80,7 @@ export const Gist = async ({ gist, currentUserId }: Gistprops) => {
             */}
             <LikeBtn
               gistId={gist.id}
+              userId={currentUserId}
               likesCount={getGistLikesCount.count}
               isUserHasLiked={isUserHasLiked}
             />

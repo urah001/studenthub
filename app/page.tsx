@@ -1,12 +1,8 @@
-import DeployButton from "../components/DeployButton";
 import AuthButton from "../components/AuthButton";
 import { createClient } from "@/utils/supabase/server";
-import Header from "@/components/Header";
 import AboutPage from "@/components/AboutSchhub";
-import { Button } from "@/components @/app /ui/button";
 import SignInAuthBtn from "./SignUp/SignUp-AuthBtn";
 import { redirect } from "next/navigation";
-import { useRouter } from "next/router";
 
 export default async function Index() {
   const supabase = createClient();

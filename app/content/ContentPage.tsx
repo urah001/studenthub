@@ -1,3 +1,4 @@
+"use server";
 import React from "react";
 import MyForm from "@/app/gistSubmit/create-form";
 import dayjs, { Dayjs } from "dayjs";
@@ -7,28 +8,11 @@ import { getGist } from "../gist/queries";
 import { supabase, supabaseServer } from "../gist";
 dayjs.extend(relativeTime);
 
-export const fetchMetadata = async () => {
-  try {
-    const res = await getGist();
-    const getMetaData = await supabaseServer.auth.getUser();
-
-    if (getMetaData.data.user) {
-      return getMetaData.data.user.id;
-    } else {
-      console.error("User data is null");
-      return null;
-    }
-  } catch (error) {
-    console.error("Error fetching metadata:", error);
-    return null;
-  }
-};
-
 async function ContentPage() {
   const res = await getGist();
-  const getMetaData = await supabaseServer.auth.getUser();
-  const metaData = getMetaData.data.user!.id;
-
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
   return (
     <>
       {/*main content */}
@@ -47,7 +31,7 @@ async function ContentPage() {
 
           {res?.data &&
             res.data.map((gist, i) => (
-              <Gist key={gist.id} gist={gist} currentUserId={metaData} />
+              <Gist key={gist.id} gist={gist} currentUserId={user!.id} />
             ))}
         </div>
       </main>
