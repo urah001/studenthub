@@ -12,8 +12,6 @@ export type GistType = Database["public"]["Tables"]["gists"]["Row"] & {
 };
 
 export const getGist = async () => {
-  const user = await supabase.auth.getUser();
-
   return await supabase
     .from("gists")
     .select(
@@ -42,7 +40,7 @@ export const isLiked = async ({
   userId,
 }: {
   gistId: string;
-  userId?: string;
+  userId: string;
 }) => {
   if (!userId) return false;
   const { data, error } = await supabaseServer
@@ -51,9 +49,5 @@ export const isLiked = async ({
     .eq("user_id", userId)
     .eq("gist_id", gistId)
     .single();
-  // if (error) {
-  //   console.log("error check , checking like status: ", error);
-  // }
-  //console.log(userId);
   return Boolean(data?.id);
 };

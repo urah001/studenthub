@@ -5,6 +5,7 @@ const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supbaseSecretKey = process.env.SUPABASE_SECRET_KEY;
 
 export const supabase = createClient();
+export const metaData = supabase.auth.getUser();
 
 export const supabaseServer = new SupabaseClient(
   supabaseUrl as string,
