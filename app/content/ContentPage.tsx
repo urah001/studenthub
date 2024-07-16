@@ -5,10 +5,11 @@ import dayjs, { Dayjs } from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { Gist } from "../gist/Gist";
 import { getGist } from "../gist/queries";
-import { supabase, supabaseServer } from "../gist";
+/*here*/ import { createSupabase } from "../gist";
 dayjs.extend(relativeTime);
 
 async function ContentPage() {
+  const { supabase, supabaseServer } = createSupabase();
   const res = await getGist();
   const {
     data: { user },

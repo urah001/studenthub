@@ -1,9 +1,10 @@
 "use server";
 import { randomUUID } from "crypto";
-import { supabase, supabaseServer } from ".";
 import { revalidatePath } from "next/cache";
+import { createSupabase } from ".";
 
 export const likeGist = async (gistId: string, userId: string) => {
+  const { supabase, supabaseServer } = createSupabase();
   const user = supabase.auth.getUser();
   const { data, error } = await supabaseServer.from("likes").insert({
     id: randomUUID(),
@@ -15,6 +16,7 @@ export const likeGist = async (gistId: string, userId: string) => {
 };
 
 export const unLikeGist = async (gistId: string, userId: string) => {
+  const { supabase, supabaseServer } = createSupabase();
   const { data, error } = await supabaseServer
     .from("likes")
     .delete()

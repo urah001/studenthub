@@ -6,7 +6,7 @@ import dayjs, { Dayjs } from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { getLikeCount, GistType, isLiked } from "./queries";
 import LikeBtn from "./likeGist";
-import { metaData, supabase, supabaseServer } from ".";
+import { createSupabase } from ".";
 
 dayjs.extend(relativeTime);
 
@@ -16,6 +16,7 @@ type Gistprops = {
 };
 
 export const Gist = async ({ gist, currentUserId }: Gistprops) => {
+  const { supabase, supabaseServer } = createSupabase();
   const {
     data: { user },
   } = await supabase.auth.getUser();
