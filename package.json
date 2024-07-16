@@ -17,7 +17,7 @@
     "clsx": "^2.1.0",
     "dayjs": "^1.11.11",
     "geist": "^1.2.1",
-    "next": "latest",
+    "next": "^14.2.5",
     "next-themes": "^0.3.0",
     "postcss": "8.4.33",
     "postcss-nested": "^6.0.1",
@@ -39,7 +39,7 @@
     "@types/react": "18.2.48",
     "@types/react-dom": "18.2.18",
     "encoding": "^0.1.13",
-    "supabase": "^1.153.4"
+    "supabase": "^1.183.5"
   },
   "name": "schoolhub",
   "description": "<a href=\"https://demo-nextjs-with-supabase.vercel.app/\">   <img alt=\"Next.js and Supabase Starter Kit - the fastest way to build apps with Next.js and Supabase\" src=\"https://demo-nextjs-with-supabase.vercel.app/opengraph-image.png\">   <h1 align=\"center\">Next.js and Supabase Starter Kit</h1> </a>",
