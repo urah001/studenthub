@@ -1,6 +1,6 @@
 "use server";
 import { Database } from "@/types/supabase";
-import { supabase, supabaseServer } from ".";
+import { createSupabase } from ".";
 
 export type GistType = Database["public"]["Tables"]["gists"]["Row"] & {
   profiles: Pick<
@@ -12,6 +12,7 @@ export type GistType = Database["public"]["Tables"]["gists"]["Row"] & {
 };
 
 export const getGist = async () => {
+  const { supabase, supabaseServer } = createSupabase();
   return await supabase
     .from("gists")
     .select(
@@ -27,6 +28,7 @@ export const getGist = async () => {
 };
 
 export const getLikeCount = async (gistId: string) => {
+  const { supabase, supabaseServer } = createSupabase();
   const res = await supabaseServer
     .from("likes")
     .select("id", { count: "exact" })
@@ -43,6 +45,7 @@ export const isLiked = async ({
   userId: string;
 }) => {
   if (!userId) return false;
+  const { supabase, supabaseServer } = createSupabase();
   const { data, error } = await supabaseServer
     .from("likes")
     .select("id")
