@@ -8,7 +8,6 @@ import { getGist } from "../gist/queries";
 /*here*/ import { createSupabase } from "../gist";
 import { getCurrentUser } from "../lib/data";
 import { redirect } from "next/navigation";
-import ProtectedPage from "../protected/page";
 
 dayjs.extend(relativeTime);
 
