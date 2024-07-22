@@ -52,7 +52,7 @@ const Navigation_Item = [
 const Navigation = () => {
   return (
     <>
-      <div className="w-[30%] h-full flex justify-center items-center relative bg-background overflow-hidden">
+      <div className="w-[30%] h-full hidden lg:block justify-center items-center relative bg-background overflow-hidden">
         <div className="max-w-screen-xl text-inherit w-full h-full flex relative">
           {/*left side bar for navigation*/}
 
