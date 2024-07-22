@@ -28,9 +28,6 @@ export const Gist = async ({ gist, currentUserId }: Gistprops) => {
     userId: currentUserId,
   });
 
-  //console.log(isUserHasLiked);
-  //console.log("gist id", gist.id, "current user id", user?.id);
-
   return (
     <div>
       <div
@@ -41,16 +38,18 @@ export const Gist = async ({ gist, currentUserId }: Gistprops) => {
           <div className="w-10 h-10 bg-slate-200 rounded-full" />
         </div>
         {/* post container */}
-        <div className="flex flex-col ">
+        <div className="flex flex-col w-full">
           {/***
-           * *
-                account info username and name
-                *
-              ***/}
+       * *
+            account info username and name
+            *
+          ***/}
           <div className="flex items-center w-full justify-between">
             <div className="flex items-center space-x-1">
               <div className="font-bold">{gist.profiles.full_name ?? " "} </div>
+              {/* user name */}
               <div className="text-gray-500">@{gist.profiles.username}</div>
+              {/* dot after name */}
               <div>
                 <Dot />
               </div>
@@ -59,26 +58,22 @@ export const Gist = async ({ gist, currentUserId }: Gistprops) => {
               </div>
             </div>
             <div className="rounded-full hover:bg-white/20 transition duration-200 p-2 cursor-pointer">
-              <ThreeDots />
+              <ThreeDots className="w-4 h-4 md:w-6 md:h-6" />
             </div>
           </div>
 
           {/* media (comment and image) */}
           <div className="text-white text-sm">
-            <div className="whitespace-pre-wrap break-words ">
-              {""}
-              {gist.text}
-            </div>
+            <div className="whitespace-pre-wrap break-words">{gist.text}</div>
           </div>
 
-          {/*activity icon , like, comment , 
-          repost, share */}
-          <div className="flex items-center justify-start space-x-40 mt-2 w-full ">
+          {/* icons: like, comment, repost, share */}
+          <div className="flex items-center justify-between mt-2 w-full ">
             {/*
-            --
-            love reaction
-            --
-            */}
+        --
+        love reaction
+        --
+        */}
             <LikeBtn
               gistId={gist.id}
               userId={currentUserId}
@@ -86,28 +81,28 @@ export const Gist = async ({ gist, currentUserId }: Gistprops) => {
               isUserHasLiked={isUserHasLiked}
             />
             {/*
-            --
-            message
-            --
-            */}
+        --
+        message
+        --
+        */}
             <div className="rounded-full hover:bg-white/20 transition duration-200 p-2 cursor-pointer">
-              <Chat size={20} />
+              <Chat size={20} className="w-4 h-4 md:w-6 md:h-6" />
             </div>
             {/*
-            --
-            repost
-            --
-            */}
+        --
+        repost
+        --
+        */}
             <div className="rounded-full hover:bg-white/20 transition duration-200 p-2 cursor-pointer">
-              <FaRetweet size={20} />
+              <FaRetweet size={20} className="w-4 h-4 md:w-6 md:h-6" />
             </div>
             {/*
-            --
-            share or send 
-            --
-            */}
+        --
+        share or send
+        --
+        */}
             <div className="rounded-full hover:bg-white/20 transition duration-200 p-2 cursor-pointer">
-              <Send size={20} />
+              <Send size={20} className="w-4 h-4 md:w-6 md:h-6" />
             </div>
           </div>
         </div>
