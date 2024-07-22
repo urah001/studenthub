@@ -3,10 +3,10 @@ import { randomUUID } from "crypto";
 import { revalidatePath } from "next/cache";
 import { createSupabase } from ".";
 
-export const likeGist = async (gistId: string, userId: string) => {
+export const likeGist = async (gistId: string, userId: string | undefined) => {
   const { supabase, supabaseServer } = createSupabase();
   const user = supabase.auth.getUser();
-  const { data, error } = await supabaseServer.from("likes").insert({
+  const { data, error } = await supabase.from("likes").insert({
     id: randomUUID(),
     gist_id: gistId,
     user_id: (await user).data.user?.id,
@@ -15,9 +15,12 @@ export const likeGist = async (gistId: string, userId: string) => {
   revalidatePath("/");
 };
 
-export const unLikeGist = async (gistId: string, userId: string) => {
+export const unLikeGist = async (
+  gistId: string,
+  userId: string | undefined
+) => {
   const { supabase, supabaseServer } = createSupabase();
-  const { data, error } = await supabaseServer
+  const { data, error } = await supabase
     .from("likes")
     .delete()
     .eq("user_id", userId)

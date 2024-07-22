@@ -6,14 +6,24 @@ import relativeTime from "dayjs/plugin/relativeTime";
 import { Gist } from "../gist/Gist";
 import { getGist } from "../gist/queries";
 /*here*/ import { createSupabase } from "../gist";
+import { getCurrentUser } from "../lib/data";
+import { redirect } from "next/navigation";
+import ProtectedPage from "../protected/page";
+
 dayjs.extend(relativeTime);
 
 async function ContentPage() {
   const { supabase, supabaseServer } = createSupabase();
   const res = await getGist();
+  const getCurrent = await getCurrentUser();
+
   const {
     data: { user },
   } = await supabase.auth.getUser();
+
+  if (getCurrent?.user.id === undefined) {
+    return redirect("/protected");
+  }
   return (
     <>
       {/*main content */}
@@ -32,7 +42,11 @@ async function ContentPage() {
 
           {res?.data &&
             res.data.map((gist, i) => (
-              <Gist key={gist.id} gist={gist} currentUserId={user!.id} />
+              <Gist
+                key={gist.id}
+                gist={gist}
+                currentUserId={getCurrent?.user.id}
+              />
             ))}
         </div>
       </main>

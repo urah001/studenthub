@@ -3,6 +3,7 @@ import { createClient } from "@/utils/supabase/server";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { Button } from "@/components @/app /ui/button";
+import { getCurrentUser } from "@/app/lib/data";
 
 const AuthButton = async () => {
   const supabase = createClient();
@@ -10,7 +11,7 @@ const AuthButton = async () => {
   const {
     data: { user },
   } = await supabase.auth.getUser();
-
+  const getCurrent = await getCurrentUser();
   const signOut = async () => {
     "use server";
 

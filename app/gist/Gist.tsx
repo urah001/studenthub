@@ -12,7 +12,7 @@ dayjs.extend(relativeTime);
 
 type Gistprops = {
   gist: GistType;
-  currentUserId: string;
+  currentUserId: string | undefined;
 };
 
 export const Gist = async ({ gist, currentUserId }: Gistprops) => {
@@ -28,7 +28,7 @@ export const Gist = async ({ gist, currentUserId }: Gistprops) => {
     userId: currentUserId,
   });
 
-  console.log(isUserHasLiked);
+  //console.log(isUserHasLiked);
   //console.log("gist id", gist.id, "current user id", user?.id);
 
   return (

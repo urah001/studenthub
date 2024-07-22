@@ -3,10 +3,11 @@
 import React, { useState, useTransition } from "react";
 import { likeGist, unLikeGist } from "./mutation";
 import { Heart, HeartFill } from "react-bootstrap-icons";
+import { string } from "zod";
 
 type LikeGistprops = {
   gistId: string;
-  userId: string;
+  userId: string | undefined;
   likesCount: number | null;
   isUserHasLiked: boolean;
 };

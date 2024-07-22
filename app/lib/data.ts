@@ -1,9 +1,21 @@
-// utils/supabase/fetchUserId.ts
+"use server";
+
 import { createSupabase } from "../gist";
 
-export const fetchUserId = async () => {
-  const { supabase } = createSupabase();
-  const { data, error } = await supabase.auth.getUser();
+/*
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supbaseSecretKey = process.env.SUPABASE_SECRET_KEY;
+const supabase = createClient(
+  supabaseUrl as string,
+  supbaseSecretKey as string
+);*/
+const { supabase, supabaseServer } = createSupabase();
 
-  return data?.user?.id;
-};
+export async function getCurrentUser() {
+  const { data: user, error } = await supabase.auth.getUser();
+  if (error) {
+    console.error("Error fetching user:", error);
+    return null;
+  }
+  return user;
+}
