@@ -5,7 +5,7 @@ import { FaRetweet } from "react-icons/fa";
 import dayjs, { Dayjs } from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { getLikeCount, GistType, isLiked } from "./queries";
-import LikeBtn from "./likeGist";
+import LikeBtn from "./likeBtn";
 import { createSupabase } from ".";
 
 dayjs.extend(relativeTime);
