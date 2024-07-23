@@ -13,8 +13,8 @@ function MyForm() {
       className="flex flex-col w-full h-full "
     >
       <label htmlFor="GistField"></label>
-      <textarea
-        className="w-full h-full placeholder:text-grey-600 bg-transparent border-b-[0.5px] border-gray-600 p-4 outline-none border-none"
+      <input
+        className="w-full h-full placeholder: text-grey-600 bg-transparent border-b-[0.5px] border-gray-600 p-4 outline-none border-none"
         placeholder="say what you feel..."
         name="gist"
       />{" "}

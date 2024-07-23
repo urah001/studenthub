@@ -8,8 +8,51 @@ import { getGist } from "../gist/queries";
 /*here*/ import { createSupabase } from "../gist";
 import { getCurrentUser } from "../lib/data";
 import { redirect } from "next/navigation";
+import {
+  Book,
+  Chat,
+  Gear,
+  Hash,
+  House,
+  Lightbulb,
+  Search,
+} from "react-bootstrap-icons";
+import Explore from "@/components/Explore";
 
 dayjs.extend(relativeTime);
+const Navigation_Item = [
+  /*
+  {
+    title: "",
+    icon: FaSchool,
+  },
+  */
+  {
+    title: "home",
+    icon: House,
+  },
+  {
+    title: "search",
+    icon: Search,
+  },
+  {
+    title: "learn",
+    icon: Lightbulb,
+  },
+  {
+    title: "study",
+    icon: Book,
+  },
+
+  /*{
+    title: "explore",
+    icon: Hash,
+  },
+  {
+    icon: Gear,
+    title: "setting",
+  },*/
+];
 
 async function ContentPage() {
   const { supabase, supabaseServer } = createSupabase();
@@ -47,6 +90,15 @@ async function ContentPage() {
                 currentUserId={getCurrent?.user.id}
               />
             ))}
+        </div>
+        <div className="fixed bottom-0 left-0 w-full bg-background shadow-lg sm:relative sm:bottom-auto sm:left-auto sm:w-auto sm:bg-transparent sm:p-0 sm:shadow-none hidden lg:block">
+          <div className="grid grid-cols-4 items-center h-16">
+            {Navigation_Item.map((item) => (
+              <div className="flex justify-center items-center h-full">
+                <item.icon size={20} />
+              </div>
+            ))}
+          </div>
         </div>
       </main>
     </>
