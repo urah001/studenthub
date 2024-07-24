@@ -17,7 +17,6 @@ import {
   Lightbulb,
   Search,
 } from "react-bootstrap-icons";
-import Explore from "@/components/Explore";
 
 dayjs.extend(relativeTime);
 const Navigation_Item = [
@@ -91,14 +90,12 @@ async function ContentPage() {
               />
             ))}
         </div>
-        <div className="fixed bottom-0 left-0 w-full bg-background shadow-lg sm:relative sm:bottom-auto sm:left-auto sm:w-auto sm:bg-transparent sm:p-0 sm:shadow-none hidden lg:block">
-          <div className="grid grid-cols-4 items-center h-16">
-            {Navigation_Item.map((item) => (
-              <div className="flex justify-center items-center h-full">
-                <item.icon size={20} />
-              </div>
-            ))}
-          </div>
+        <div className="font-bold backdrop-blur bottom-0 fixed p-2 flex flex-row justify-between items-center w-full sm:hidden">
+          {Navigation_Item.map((item) => (
+            <div key={item.title}>
+              <item.icon size={20} />
+            </div>
+          ))}
         </div>
       </main>
     </>
