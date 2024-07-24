@@ -78,7 +78,7 @@ async function ContentPage() {
           {/* post space and post */}
           <MyForm />
         </div>
-        <div className=" flex flex-col w-full">
+        <div className=" flex flex-col w-full pb-10">
           {res?.error && <div>review your network and try again </div>}
 
           {res?.data &&
