@@ -90,9 +90,10 @@ async function ContentPage() {
               />
             ))}
         </div>
+        {/* monile navigation  */}
         <div className="font-bold backdrop-blur bottom-0 fixed p-2 flex flex-row justify-between items-center w-full sm:hidden">
           {Navigation_Item.map((item) => (
-            <div key={item.title}>
+            <div key={item.title} className="cursor-pointer">
               <item.icon size={20} />
             </div>
           ))}
