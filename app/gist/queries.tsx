@@ -1,6 +1,10 @@
 "use server";
 import { Database } from "@/types/supabase";
 import { createSupabase } from ".";
+import { pool } from "@/lib/db";
+import { getCurrentUser } from "../lib/data";
+import { Query } from "pg";
+import { error } from "console";
 
 export type GistType = Database["public"]["Tables"]["gists"]["Row"] & {
   profiles: Pick<
@@ -11,8 +15,19 @@ export type GistType = Database["public"]["Tables"]["gists"]["Row"] & {
   };
 };
 
-export const getGist = async () => {
+const query = `SELECT gists.*, COUNT(likes.id) AS likes_count, EXISTS( SELECT 1 FROM likes WHERE likes.gist_id = gists.id AND likes.user_id = $1 ) AS user_has_liked FROM gists LEFT JOIN likes ON gists.id = likes.gist_id GROUP BY gists.id ORDER BY gists.created_at DESC`;
+export const getGist = async (currentUserId?: string) => {
   const { supabase, supabaseServer } = createSupabase();
+
+  pool.query(query, [currentUserId], (error, result) => {
+    if (error) {
+      console.log(" error executing query: ", error);
+      return;
+    }
+    //process the query result
+    console.log("query result: ", result.rows);
+  });
+
   return await supabase
     .from("gists")
     .select(

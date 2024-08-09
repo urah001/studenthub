@@ -16,11 +16,6 @@ type Gistprops = {
 };
 
 export const Gist = async ({ gist, currentUserId }: Gistprops) => {
-  const { supabase, supabaseServer } = createSupabase();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
   const getGistLikesCount = await getLikeCount(gist.id);
 
   const isUserHasLiked = await isLiked({

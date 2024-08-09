@@ -55,12 +55,8 @@ const Navigation_Item = [
 
 async function ContentPage() {
   const { supabase, supabaseServer } = createSupabase();
-  const res = await getGist();
   const getCurrent = await getCurrentUser();
-
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  const res = await getGist(getCurrent?.user.id);
 
   if (getCurrent?.user.id === undefined) {
     return redirect("/protected");
@@ -90,7 +86,7 @@ async function ContentPage() {
               />
             ))}
         </div>
-        {/* monile navigation  */}
+        {/* mobile navigation  */}
         <div className="font-bold backdrop-blur bottom-0 fixed p-2 flex flex-row justify-between items-center w-full sm:hidden">
           {Navigation_Item.map((item) => (
             <div key={item.title} className="cursor-pointer">
