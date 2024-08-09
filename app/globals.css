@@ -1,11 +1,10 @@
-@tailwind base;
+/*@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* app/globals.css */
+
 @layer utilities {
   .border-border {
-    /* Define the styles for the border-border class */
   }
   .bg-background {
     background-color: #020617;
@@ -43,13 +42,11 @@
         --input: 20 5.9% 90%;
         --ring: 24.6 95% 53.1%;
         --radius: 1rem;
-        /*  --primary: 38 92% 50%;
-        --primary-foreground: 48 96% 89%;*/
+      
       }
 
       .dark {
-        /* --warning: 48 96% 89%;
-        --warning-foreground: 38 92% 50%;*/
+      
         --background: 20 14.3% 4.1%;
         --foreground: 60 9.1% 97.8%;
         --card: 20 14.3% 4.1%;
@@ -81,4 +78,81 @@
   body {
     @apply bg-background text-foreground primary;
   }
+}*/
+
+/* adding new css  */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .border-border {
+    /* Define the styles for the border-border class */
+  }
+
+  .border-border {
+    /* Define the styles for the border-border class */
+  }
+  .bg-background {
+    background-color: #020617;
+  }
+  .text-foreground {
+    color: white;
+  }
+  .primary {
+    background-color: #ea580c;
+    border: none;
+  }
 }
+
+.font-body {
+}
+.font-heading {
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 45%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 5.9% 10%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading;
+  }
+}
+
+/* end here */

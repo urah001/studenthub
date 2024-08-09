@@ -16,7 +16,6 @@ export default function AboutPage() {
   return (
     <div className="bg-inherit text-inherit">
       <div>
-        <h1>Welcome to Schoolhub Social Network</h1>
         <p>
           Our social network is a vibrant online community designed to connect
           students, lecturers, and aspirant in an innovative and engaging way.
