@@ -182,7 +182,7 @@ export default function Login({
   );
 }
 
-function GraduationCapIcon(props: any) {
+export function GraduationCapIcon(props: any) {
   return (
     <svg
       {...props}

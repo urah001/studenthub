@@ -4,6 +4,8 @@ import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import { SubmitButton } from "../login/submit-button";
 import { profile } from "console";
+import { GraduationCapIcon } from "../login/page";
+import AuthButton from "@/components/AuthButton";
 
 //import { useState } from "react";
 
@@ -67,104 +69,155 @@ export default function SignUpPage({
   };
 
   return (
-    <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2 bg-background">
-      <Link
-        href="/"
-        className="absolute left-8 top-8 py-2 px-4 rounded-md no-underline text-foreground bg-btn-background hover:bg-btn-background-hover flex items-center group text-sm"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="mr-2 h-4 w-4 transition-transform group-hover:-translate-x-1"
-        >
-          <polyline points="15 18 9 12 15 6" />
-        </svg>{" "}
-        Back
-      </Link>
+    <div className="flex min-h-[100dvh] flex-col bg-[#020617] text-white">
+      <header className="flex items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+        <div className="flex items-center gap-2">
+          <GraduationCapIcon className="h-6 w-6 text-white" />
+          <span className="text-lg font-bold text-white">Campus Connect</span>
+        </div>
+      </header>
 
-      <form className="animate-in flex-1 flex flex-col w-full justify-center gap-2">
-        {/* name */}
-        <label className="text-md" htmlFor="full_name">
-          name
-        </label>
-        <input
-          className="rounded-md px-4 py-2 bg-inherit border mb-6"
-          type="text"
-          name="full_name"
-          placeholder="john-doe"
-          required
-        />
+      <main className="flex-1 bg-[#0c1130] p-4 sm:p-6 lg:p-8">
+        <div className="flex justify-center">
+          <div className="w-full max-w-md rounded-lg bg-[#020617] p-6 shadow-lg">
+            <h2 className="mb-6 text-2xl font-bold">Sign Up</h2>
+            <form className="animate-in flex-1 flex flex-col w-full justify-center gap-2">
+              <div className="mb-4">
+                {/* name */}
+                <label
+                  className="mb-2 block text-sm font-medium text-[#ccc]"
+                  htmlFor="full_name"
+                >
+                  name
+                </label>
+                <input
+                  className="block w-full rounded-md border border-[#ccc] bg-[#0c1130] px-3 py-2 text-white focus:border-[#ea580c] focus:outline-none focus:ring-2 focus:ring-[#ea580c] focus:ring-offset-2"
+                  type="text"
+                  name="full_name"
+                  placeholder="john"
+                  required
+                />
+              </div>
 
-        {/* username */}
-        <label className="text-md" htmlFor="username">
-          username
-        </label>
-        <input
-          className="rounded-md px-4 py-2 bg-inherit border mb-6"
-          type="text"
-          name="username"
-          placeholder="@name"
-          required
-        />
-        {/* 
-        
-       email
-        
-        */}
-        <label className="text-md" htmlFor="email">
-          email
-        </label>
-        <input
-          className="rounded-md px-4 py-2 bg-inherit border mb-6"
-          type="text"
-          name="email"
-          placeholder="you@exampl.com"
-          required
-        />
+              {/* username */}
+              <div className="mb-4">
+                <label
+                  className="mb-2 block text-sm font-medium text-[#ccc]"
+                  htmlFor="username"
+                >
+                  username
+                </label>
+                <input
+                  className="block w-full rounded-md border border-[#ccc] bg-[#0c1130] px-3 py-2 text-white focus:border-[#ea580c] focus:outline-none focus:ring-2 focus:ring-[#ea580c] focus:ring-offset-2"
+                  type="text"
+                  name="username"
+                  placeholder="@name"
+                  required
+                />
+              </div>
 
-        {/* 
+              {/*       email   */}
+              <div className="mb-4">
+                <label
+                  className="mb-2 block text-sm font-medium text-[#ccc]"
+                  htmlFor="email"
+                >
+                  email
+                </label>
+                <input
+                  className="block w-full rounded-md border border-[#ccc] bg-[#0c1130] px-3 py-2 text-white focus:border-[#ea580c] focus:outline-none focus:ring-2 focus:ring-[#ea580c] focus:ring-offset-2"
+                  type="text"
+                  name="email"
+                  placeholder="you@exampl.com"
+                  required
+                />
+              </div>
+
+              {/* 
         
         password 
         
         */}
+              <div className="mb-4">
+                <label
+                  className="mb-2 block text-sm font-medium text-[#ccc]"
+                  htmlFor="password"
+                >
+                  password
+                </label>
+                <input
+                  className="block w-full rounded-md border border-[#ccc] bg-[#0c1130] px-3 py-2 text-white focus:border-[#ea580c] focus:outline-none focus:ring-2 focus:ring-[#ea580c] focus:ring-offset-2"
+                  type="password"
+                  name="password"
+                  placeholder="••••••••"
+                  required
+                />
+              </div>
 
-        <label className="text-md" htmlFor="password">
-          password
-        </label>
-        <input
-          className="rounded-md px-4 py-2 bg-inherit border mb-6"
-          type="password"
-          name="password"
-          placeholder="••••••••"
-          required
-        />
-        {/*<SubmitButton
-          formAction={signIn}
-          className="primary rounded-md px-4 py-2 text-foreground mb-2"
-          pendingText="Signing In..."
-        >
-          Sign In
-  </SubmitButton>*/}
-        <SubmitButton
-          formAction={signUp}
-          className="border border-foreground/20 rounded-md px-4 py-2 text-foreground mb-2"
-          pendingText="Signing Up..."
-        >
-          Sign Up
-        </SubmitButton>
-        {searchParams?.message && (
-          <p className="mt-4 p-4 bg-foreground/10 text-foreground text-center">
-            {searchParams.message}
-          </p>
-        )}
-      </form>
+              <SubmitButton
+                formAction={signUp}
+                className="w-full rounded-md bg-[#ea580c] px-4 py-2 text-sm font-medium text-[#020617] transition-colors hover:bg-[#f5b461] focus:outline-none focus:ring-2 focus:ring-[#ea580c] focus:ring-offset-2"
+                pendingText="Signing Up..."
+              >
+                Sign Up
+              </SubmitButton>
+              {searchParams?.message && (
+                <p className="mt-4 p-4 bg-foreground/10 text-foreground text-center">
+                  {searchParams.message}
+                </p>
+              )}
+            </form>
+            <div className="mt-4 text-center text-[#ccc]">
+              Already have an account? <AuthButton />
+            </div>
+          </div>
+        </div>
+      </main>
+      <footer className="bg-[#020617] py-6 sm:py-8 lg:py-10">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
+            <div className="flex items-center gap-2">
+              <GraduationCapIcon className="h-6 w-6 text-white" />
+              <span className="text-lg font-bold text-white">
+                Campus Connect
+              </span>
+            </div>
+            <nav className="flex items-center gap-4">
+              <Link
+                href="#"
+                className="text-sm font-medium text-[#ccc] hover:text-white"
+                prefetch={false}
+              >
+                About
+              </Link>
+              <Link
+                href="#"
+                className="text-sm font-medium text-[#ccc] hover:text-white"
+                prefetch={false}
+              >
+                Contact
+              </Link>
+              <Link
+                href="#"
+                className="text-sm font-medium text-[#ccc] hover:text-white"
+                prefetch={false}
+              >
+                Privacy
+              </Link>
+              <Link
+                href="#"
+                className="text-sm font-medium text-[#ccc] hover:text-white"
+                prefetch={false}
+              >
+                Terms
+              </Link>
+            </nav>
+            <p className="text-sm text-[#ccc]">
+              &copy; 2024 Campus Connect. All rights reserved.
+            </p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
