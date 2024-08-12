@@ -64,17 +64,17 @@ async function ContentPage() {
   return (
     <>
       {/*main content */}
-      <main className="flex w-full h-full min-h-screen flex-col border-l-[0.5px] border-r-[0.5px] border-gray-600">
+      <main className="flex-1 bg-[#0c1130] p-4 sm:p-6 lg:p-8 ">
         <h1 className="text-xl font-bold p-2  backdrop-blur sticky top-0">
           Home
         </h1>
 
-        <div className=" border-t-[0.5px] px-4 border-b-[0.5px] flex item-stretch py-6 space-x-2  relative">
+        <div className="border-t-[0.1px] py-2 px-6 border-b-[0.1px] flex space-x-4 overflow-hidden bg-[#020617] rounded-lg shadow-lg p-4 mt-4 border-none">
           <div className="w-11 h-11 bg-slate-400 rounded-full flex-none"></div>
           {/* post space and post */}
           <MyForm />
         </div>
-        <div className="flex flex-col w-full pb-10">
+        <div className="flex flex-col w-full ">
           {res?.error && <div>review your network and try again </div>}
 
           {res?.data &&
