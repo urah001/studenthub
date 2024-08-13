@@ -3,7 +3,7 @@ import { IoIosSearch } from "react-icons/io";
 
 const Explore = () => {
   return (
-    <div className="hidden lg:flex w-[30%] h-full justify-center text-foreground items-center relative bg-inherit">
+    <div className="hidden lg:flex w-[20%] h-full justify-center text-foreground items-center relative bg-inherit">
       <div className="max-w-screen-xl w-full h-full flex relative">
         <section className="fixed flex flex-col space-x-4 w-[275px] lg:w-[275px] xl:w-[300px]">
           <div className="relative h-full w-full pl-2 group">

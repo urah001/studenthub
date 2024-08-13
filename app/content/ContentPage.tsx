@@ -64,8 +64,8 @@ async function ContentPage() {
   return (
     <>
       {/*main content */}
-      <main className="flex-1 bg-[#0c1130] p-4 sm:p-6 lg:p-8 ">
-        <h1 className="text-xl font-bold p-2  backdrop-blur sticky top-0">
+      <main className="flex-1 bg-[#0c1130] p-4 sm:p-6 lg:p-8 max-w-4xl mx-auto">
+        <h1 className="text-xl font-bold p-2 backdrop-blur sticky top-0 bg-[#0c1130] z-10">
           Home
         </h1>
 
@@ -74,8 +74,9 @@ async function ContentPage() {
           {/* post space and post */}
           <MyForm />
         </div>
-        <div className="flex flex-col w-full ">
-          {res?.error && <div>review your network and try again </div>}
+
+        <div className="flex flex-col w-full">
+          {res?.error && <div>review your network and try again</div>}
 
           {res?.data &&
             res.data.map((gist, i) => (
@@ -86,11 +87,12 @@ async function ContentPage() {
               />
             ))}
         </div>
-        {/* mobile navigation  */}
-        <div className="font-bold backdrop-blur bottom-0 fixed p-2 flex flex-row justify-between items-center w-full sm:hidden">
+
+        {/* mobile navigation */}
+        <div className="fixed bottom-0 left-0 right-0 bg-[#0c1130] p-2 flex flex-row justify-between items-center w-full sm:hidden z-50">
           {Navigation_Item.map((item) => (
-            <div key={item.title} className="cursor-pointer">
-              <item.icon size={20} />
+            <div key={item.title} className="cursor-pointer flex-1 text-center">
+              <item.icon size={24} className="mx-auto " />
             </div>
           ))}
         </div>
