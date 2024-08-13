@@ -12,6 +12,7 @@ import {
 } from "@/components @/app /ui/avatar";
 import { Button } from "@/components @/app /ui/button";
 import { HeartIcon, MessageCircleIcon, ShareIcon } from "@/components @/icon";
+import { GraduationCapIcon } from "../login/page";
 
 export default function Component() {
   return (
