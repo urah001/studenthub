@@ -17,6 +17,7 @@ import {
   Lightbulb,
   Search,
 } from "react-bootstrap-icons";
+import MobileNav from "@/components/MobileNav";
 
 dayjs.extend(relativeTime);
 const Navigation_Item = [
@@ -72,6 +73,7 @@ async function ContentPage() {
         <div className="border-t-[0.1px] py-2 px-6 border-b-[0.1px] flex space-x-4 overflow-hidden bg-[#020617] rounded-lg shadow-lg p-4 mt-4 border-none">
           <div className="w-11 h-11 bg-slate-400 rounded-full flex-none"></div>
           {/* post space and post */}
+          {/* input */}
           <MyForm />
         </div>
 
@@ -87,15 +89,7 @@ async function ContentPage() {
               />
             ))}
         </div>
-
-        {/* mobile navigation */}
-        <div className="fixed bottom-0 left-0 right-0 bg-[#0c1130] p-2 flex flex-row justify-between items-center w-full sm:hidden z-50">
-          {Navigation_Item.map((item) => (
-            <div key={item.title} className="cursor-pointer flex-1 text-center">
-              <item.icon size={24} className="mx-auto hover:text-[#ea580c]" />
-            </div>
-          ))}
-        </div>
+        <MobileNav />
       </main>
     </>
   );
