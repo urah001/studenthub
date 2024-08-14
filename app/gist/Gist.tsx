@@ -6,7 +6,7 @@ import dayjs, { Dayjs } from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { getLikeCount, GistType, isLiked } from "./queries";
 import LikeBtn from "./likeBtn";
-import { MessageCircleIcon } from "@/components @/icon";
+import { MessageCircleIcon, RetweetIcon } from "@/components @/icon";
 
 dayjs.extend(relativeTime);
 
@@ -89,7 +89,7 @@ export const Gist = async ({ gist, currentUserId }: Gistprops) => {
           --
           */}
             <div className="rounded-full hover:bg-white/20 transition duration-200 p-2 cursor-pointer">
-              <FaRetweet size={20} className="w-4 h-4 md:w-6 md:h-6" />
+              <RetweetIcon size={20} className="w-4 h-4 md:w-6 md:h-6" />
             </div>
             {/*
           --
