@@ -1,15 +1,13 @@
 import { GeistSans } from "geist/font/sans";
 import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
-import { Inter } from "next/font/google";
-import { cn } from "@/lib/utils";
 import { Toaster } from "sonner";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
   : "http://localhost:3000";
 
-const fontHeading = Inter({
+/*const fontHeading = Inter({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-heading",
@@ -19,7 +17,7 @@ const fontBody = Inter({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-body",
-});
+});*/
 
 export default function RootLayout({
   children,
