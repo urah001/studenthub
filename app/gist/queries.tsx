@@ -2,9 +2,6 @@
 import { Database } from "@/types/supabase";
 import { createSupabase } from ".";
 import { pool } from "@/lib/db";
-import { getCurrentUser } from "../lib/data";
-import { Query } from "pg";
-import { error } from "console";
 
 export type GistType = Database["public"]["Tables"]["gists"]["Row"] & {
   profiles: Pick<
