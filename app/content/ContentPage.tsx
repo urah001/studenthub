@@ -19,6 +19,7 @@ import {
 } from "react-bootstrap-icons";
 import MobileNav from "@/components/MobileNav";
 import FloatingActionButton from "@/components/FAB";
+import { createClient } from "@/utils/supabase/server";
 
 dayjs.extend(relativeTime);
 const Navigation_Item = [
@@ -56,13 +57,16 @@ const Navigation_Item = [
 ];
 
 async function ContentPage() {
-  const { supabase, supabaseServer } = createSupabase();
+  //const { supabase, supabaseServer } = createSupabase();
   const getCurrent = await getCurrentUser();
   const res = await getGist(getCurrent?.user.id);
-
-  if (getCurrent?.user.id === undefined) {
-    return redirect("/protected");
-  }
+  // const supabaseClient = createClient();
+  // const { data: userDate, error: userError } =
+  //   await supabaseClient.auth.getUser();
+  //const res = await getGist(userDate?.user?.id);
+  // if (getCurrent?.user.id === undefined) {
+  //   return redirect("/protected");
+  // }
   return (
     <>
       {/*main content */}
@@ -79,10 +83,9 @@ async function ContentPage() {
         </div>
 
         <div className="flex flex-col w-full">
-          {res?.error && <div>Review your network and try again</div>}
-
+          {/* {res?.error && <div>Review your network and try again</div>} */}
           {res?.data &&
-            res.data.map((gist, i) => (
+            res.data.map((gist: any) => (
               <Gist
                 key={gist.id}
                 gist={gist}

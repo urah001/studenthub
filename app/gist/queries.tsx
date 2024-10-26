@@ -12,30 +12,48 @@ export type GistType = Database["public"]["Tables"]["gists"]["Row"] & {
   };
 };
 
-const query = `SELECT gists.*, COUNT(likes.id) AS likes_count, EXISTS( SELECT 1 FROM likes WHERE likes.gist_id = gists.id AND likes.user_id = $1 ) AS user_has_liked FROM gists LEFT JOIN likes ON gists.id = likes.gist_id GROUP BY gists.id ORDER BY gists.created_at DESC`;
+const query = `SELECT 
+    gists.*, 
+    profiles.username, 
+    profiles.full_name, 
+    COUNT(likes.id) AS likes_count, 
+    EXISTS(
+        SELECT 1 
+        FROM likes 
+        WHERE likes.gist_id = gists.id 
+        AND likes.user_id = $1
+    ) AS user_has_liked
+FROM 
+    gists
+LEFT JOIN 
+    likes ON gists.id = likes.gist_id
+LEFT JOIN 
+    profiles ON likes.user_id = profiles.id -- Correct join between gists and profiles
+GROUP BY 
+    gists.id, profiles.username, profiles.full_name
+ORDER BY 
+    gists.created_at DESC;
+`;
 export const getGist = async (currentUserId?: string) => {
   const { supabase, supabaseServer } = createSupabase();
 
-  pool.query(query, [currentUserId], (error, result) => {
-    if (error) {
-      console.log(" error executing query: ", error);
-      return { error: { message: "db querying failed" } };
-    }
-
-    //process the query result
-    //console.log("query result: ", result.rows);
-  });
-
+  try {
+    const res = await pool.query(query, [currentUserId]);
+    console.log(res.rows);
+    return { data: res.rows };
+  } catch (error) {
+    console.log(error);
+  }
   // return await supabase
   //   .from("gists")
   //   .select(
   //     `*,
-  //     profiles
-  //     (
-  //       full_name,
-  //   username
-  // )
-  // `
+  //      profiles
+  //      (
+  //        full_name,
+  //    username
+  //  )
+  //  `
   //   )
   //   .returns<GistType[]>();
 };

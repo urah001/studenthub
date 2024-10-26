@@ -38,7 +38,7 @@ export default async function Index() {
       <header className="flex items-center sticky top-0 justify-between px-4 py-3 sm:px-6 lg:px-8 backdrop-blur">
         <Link href="#" className="flex items-center gap-2" prefetch={false}>
           <GraduationCapIcon className="h-6 w-6 text-white" />
-          <span className="text-xl font-bold text-white ">Campus Connect</span>
+          <span className="text-xl font-bold text-white ">student hub</span>
         </Link>
         <div className="flex items-center gap-4">
           <SignInAuthBtn />
@@ -80,7 +80,7 @@ export default async function Index() {
                   src="/connect.svg"
                   width={500}
                   height={500}
-                  alt="Campus Connect"
+                  alt="student hub"
                   className="rounded-xl object-cover"
                   style={{ aspectRatio: "500/500", objectFit: "cover" }}
                 />
@@ -176,7 +176,7 @@ export default async function Index() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
             <p className="text-sm text-white">
-              &copy; 2024 Campus Connect. All rights reserved.
+              &copy; 2024 stduent hub. All rights reserved.
             </p>
             <nav className="flex items-center gap-4">
               <Link
