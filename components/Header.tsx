@@ -1,4 +1,4 @@
-import NextLogo from "./NextLogo";
+import NextLogo from "./sonnerCom";
 import SupabaseLogo from "./SupabaseLogo";
 
 export default function Header() {

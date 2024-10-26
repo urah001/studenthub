@@ -73,7 +73,7 @@ export default function SignUpPage({
       <header className="flex items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
         <div className="flex items-center gap-2">
           <GraduationCapIcon className="h-6 w-6 text-white" />
-          <span className="text-lg font-bold text-white">Campus Connect</span>
+          <span className="text-lg font-bold text-white"> studenthub</span>
         </div>
       </header>
 
@@ -178,9 +178,7 @@ export default function SignUpPage({
           <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
             <div className="flex items-center gap-2">
               <GraduationCapIcon className="h-6 w-6 text-white" />
-              <span className="text-lg font-bold text-white">
-                Campus Connect
-              </span>
+              <span className="text-lg font-bold text-white">studenthub</span>
             </div>
             <nav className="flex items-center gap-4">
               <Link
@@ -213,7 +211,7 @@ export default function SignUpPage({
               </Link>
             </nav>
             <p className="text-sm text-[#ccc]">
-              &copy; 2024 Campus Connect. All rights reserved.
+              &copy; 2024 studenthub. All rights reserved.
             </p>
           </div>
         </div>

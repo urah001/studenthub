@@ -4,6 +4,16 @@ import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import { SubmitButton } from "./submit-button";
 import SignInAuthBtn from "../SignUp/SignUp-AuthBtn";
+import { toast } from "sonner";
+import { FailedAuth } from "@/components/sonnerCom";
+
+const sonnerMsg = () => {
+  toast.error("authentication failed , checkemail or password", {
+    className: "bg-background text-foreground text-lg",
+    // description: "testing this description",
+    duration: 3000,
+  });
+};
 
 export default function Login({
   searchParams,
@@ -23,7 +33,8 @@ export default function Login({
     });
 
     if (error) {
-      return redirect("/login?message=incorrect username or password ");
+      <FailedAuth />;
+      // return redirect("/login?message=incorrect username or password ");
     }
 
     return redirect("/protected");
@@ -77,7 +88,7 @@ export default function Login({
       <header className="flex items-center justify-between px-4 py-3 sm:px-6 lg:px-8 ml-[30%]">
         <Link href="#" className="flex items-center gap-2" prefetch={false}>
           <GraduationCapIcon className="h-6 w-6 text-white" />
-          <span className="text-xl font-bold  text-white">Campus Connect</span>
+          <span className="text-xl font-bold  text-white">student hub</span>
         </Link>
       </header>
       <main className="flex-1 flex items-center justify-center">
@@ -150,7 +161,7 @@ export default function Login({
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
             <p className="text-sm text-white">
-              &copy; 2024 Campus Connect. All rights reserved.
+              &copy; 2024 studenthub. All rights reserved.
             </p>
             <nav className="flex items-center gap-4">
               <Link

@@ -1,11 +1,9 @@
 "use server";
-import { createClient } from "@/utils/supabase/server";
-
 import { revalidatePath, revalidateTag } from "next/cache";
 import { useForm } from "react-hook-form";
 import { date, z } from "zod";
-
 import { randomUUID } from "crypto";
+import { createSupabase } from "../gist";
 
 const FormSchema = z.object({
   title: z
@@ -32,9 +30,8 @@ export async function handleSubmitGist(
   formData: FormData
   // values: z.infer<typeof FormSchema>
 ) {
-  const supabase = createClient();
-  //const supabase = createBrowserClient<Database>;
-
+  //const supabase = createClient();
+  const { supabase, supabaseServer } = createSupabase();
   const gist = formData.get("gist");
   if (!gist) return;
 
@@ -62,4 +59,7 @@ export async function handleSubmitGist(
     };
     //toast.error(" gist not sent ");
   }
+}
+function createClient() {
+  throw new Error("Function not implemented.");
 }

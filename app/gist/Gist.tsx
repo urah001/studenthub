@@ -41,9 +41,10 @@ export const Gist = async ({ gist, currentUserId }: Gistprops) => {
          ***/}
           <div className="flex items-center w-full justify-between">
             <div className="flex items-center space-x-1">
-              <div className="font-bold">{gist.profiles.full_name ?? " "} </div>
+              {/* remeber to fix this  */}
+              {/* <div className="font-bold">{gist.profiles.full_name ?? " "} </div> */}
               {/* user name */}
-              <div className="text-gray-500">@{gist.profiles.username}</div>
+              <div className="text-gray-500">@{gist.id}</div>
               {/* dot after name */}
               <div>
                 <Dot />
