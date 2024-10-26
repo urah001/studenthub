@@ -2,9 +2,6 @@
 import { Database } from "@/types/supabase";
 import { createSupabase } from ".";
 import { pool } from "@/lib/db";
-import { getCurrentUser } from "../lib/data";
-import { Query } from "pg";
-import { error } from "console";
 
 export type GistType = Database["public"]["Tables"]["gists"]["Row"] & {
   profiles: Pick<
@@ -22,24 +19,25 @@ export const getGist = async (currentUserId?: string) => {
   pool.query(query, [currentUserId], (error, result) => {
     if (error) {
       console.log(" error executing query: ", error);
-      return;
+      return { error: { message: "db querying failed" } };
     }
+
     //process the query result
-    console.log("query result: ", result.rows);
+    //console.log("query result: ", result.rows);
   });
 
-  return await supabase
-    .from("gists")
-    .select(
-      `*,
-      profiles
-      (
-        full_name,
-    username
-  )
-  `
-    )
-    .returns<GistType[]>();
+  // return await supabase
+  //   .from("gists")
+  //   .select(
+  //     `*,
+  //     profiles
+  //     (
+  //       full_name,
+  //   username
+  // )
+  // `
+  //   )
+  //   .returns<GistType[]>();
 };
 
 export const getLikeCount = async (gistId: string) => {

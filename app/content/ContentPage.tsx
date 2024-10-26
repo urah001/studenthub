@@ -18,6 +18,7 @@ import {
   Search,
 } from "react-bootstrap-icons";
 import MobileNav from "@/components/MobileNav";
+import FloatingActionButton from "@/components/FAB";
 
 dayjs.extend(relativeTime);
 const Navigation_Item = [
@@ -89,6 +90,9 @@ async function ContentPage() {
               />
             ))}
         </div>
+
+        <FloatingActionButton />
+        <MobileNav />
         <MobileNav />
       </main>
     </>
