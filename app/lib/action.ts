@@ -16,15 +16,15 @@ const FormSchema = z.object({
     }),
 });
 
-export async function ProfileForm() {
-  // 1. Define your form.
-  const form = useForm<z.infer<typeof FormSchema>>({
-    // resolver: zodResolver(FormSchema),
-    defaultValues: {
-      title: "",
-    },
-  });
-}
+// export async function ProfileForm() {
+//   // 1. Define your form.
+//   const form = useForm<z.infer<typeof FormSchema>>({
+//     // resolver: zodResolver(FormSchema),
+//     defaultValues: {
+//       title: "",
+//     },
+//   });
+// }
 
 export async function handleSubmitGist(
   formData: FormData
@@ -60,6 +60,7 @@ export async function handleSubmitGist(
     //toast.error(" gist not sent ");
   }
 }
-function createClient() {
-  throw new Error("Function not implemented.");
-}
+
+// function createClient() {
+//   throw new Error("Function not implemented.");
+// }

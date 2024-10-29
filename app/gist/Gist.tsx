@@ -17,7 +17,7 @@ type Gistprops = {
 
 export const Gist = async ({ gist, currentUserId }: Gistprops) => {
   const getGistLikesCount = await getLikeCount(gist.id);
-
+  console.log(getGistLikesCount.count);
   const isUserHasLiked = await isLiked({
     gistId: gist.id,
     userId: currentUserId,
@@ -42,9 +42,9 @@ export const Gist = async ({ gist, currentUserId }: Gistprops) => {
           <div className="flex items-center w-full justify-between">
             <div className="flex items-center space-x-1">
               {/* remeber to fix this  */}
-              {/* <div className="font-bold">{gist.profiles.full_name ?? " "} </div> */}
+              <div className="font-bold">{gist.full_name} </div>
               {/* user name */}
-              <div className="text-gray-500">@{gist.id}</div>
+              <div className="text-gray-500">@{gist.username}</div>
               {/* dot after name */}
               <div>
                 <Dot />

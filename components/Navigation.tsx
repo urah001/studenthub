@@ -13,12 +13,6 @@ import Link from "next/link";
 import AuthButton from "./AuthButton";
 
 const Navigation_Item = [
-  /*
-  {
-    title: "",
-    icon: FaSchool,
-  },
-  */
   {
     title: "home",
     icon: House,
@@ -67,12 +61,9 @@ const Navigation = () => {
                   <div className="">
                     <item.icon size={18} />
                   </div>
-                  {item.title !== "schoolhub" && <div>{item.title}</div>}
+                  {item.title !== "studenthub" && <div>{item.title}</div>}
                 </Link>
               ))}
-              {/* <button className="rounded-full primary text-2xl text-center hover:bg-opacity-90 mt-4 px-6 transition duration-200 ">
-                GIST
-              </button> */}
             </div>
             <button className="rounded-full flex items-center space-x-2 bg-transparent m-4 text-2xl text-center hover:bg-background-70 transition duration-200 hover:bg-background/20 w-full">
               <AuthButton />

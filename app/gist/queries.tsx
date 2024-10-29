@@ -2,43 +2,42 @@
 import { Database } from "@/types/supabase";
 import { createSupabase } from ".";
 import { pool } from "@/lib/db";
+import { revalidatePath } from "next/cache";
 
 export type GistType = Database["public"]["Tables"]["gists"]["Row"] & {
-  profiles: Pick<
-    Database["public"]["Tables"]["profiles"]["Row"],
-    "full_name" | "username"
-  > & {
-    id: string;
-  };
+  username: string;
+  full_name: string;
 };
 
-const query = `SELECT 
-    gists.*, 
-    profiles.username, 
-    profiles.full_name, 
-    COUNT(likes.id) AS likes_count, 
+const query = `SELECT
+    gists.*,
+    profiles.username,
+    profiles.full_name,
+    COUNT(likes.id) AS likes_count,
     EXISTS(
-        SELECT 1 
-        FROM likes 
-        WHERE likes.gist_id = gists.id 
+        SELECT 1
+        FROM likes
+        WHERE likes.gist_id = gists.id
         AND likes.user_id = $1
     ) AS user_has_liked
-FROM 
+FROM
     gists
-LEFT JOIN 
+LEFT JOIN
     likes ON gists.id = likes.gist_id
-LEFT JOIN 
-    profiles ON likes.user_id = profiles.id -- Correct join between gists and profiles
-GROUP BY 
+LEFT JOIN
+    profiles ON gists.profile_id = profiles.id -- Link profiles to the gist's creator
+GROUP BY
     gists.id, profiles.username, profiles.full_name
-ORDER BY 
+ORDER BY
     gists.created_at DESC;
+
 `;
 export const getGist = async (currentUserId?: string) => {
   const { supabase, supabaseServer } = createSupabase();
 
   try {
     const res = await pool.query(query, [currentUserId]);
+    revalidatePath("/");
     console.log(res.rows);
     return { data: res.rows };
   } catch (error) {
@@ -58,8 +57,9 @@ export const getGist = async (currentUserId?: string) => {
   //   .returns<GistType[]>();
 };
 
+//supabaseserver is used to get little role level authorisation so pls leave it alone
 export const getLikeCount = async (gistId: string) => {
-  const { supabase, supabaseServer } = createSupabase();
+  const { supabaseServer } = createSupabase();
   const res = await supabaseServer
     .from("likes")
     .select("id", { count: "exact" })
@@ -76,7 +76,7 @@ export const isLiked = async ({
   userId: string | undefined;
 }) => {
   if (!userId) return false;
-  const { supabase, supabaseServer } = createSupabase();
+  const { supabaseServer } = createSupabase();
   const { data, error } = await supabaseServer
     .from("likes")
     .select("id")

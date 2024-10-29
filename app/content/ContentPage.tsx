@@ -22,39 +22,39 @@ import FloatingActionButton from "@/components/FAB";
 import { createClient } from "@/utils/supabase/server";
 
 dayjs.extend(relativeTime);
-const Navigation_Item = [
-  /*
-  {
-    title: "",
-    icon: FaSchool,
-  },
-  */
-  {
-    title: "home",
-    icon: House,
-  },
-  {
-    title: "search",
-    icon: Search,
-  },
-  {
-    title: "learn",
-    icon: Lightbulb,
-  },
-  {
-    title: "study",
-    icon: Book,
-  },
+// const Navigation_Item = [
+//   /*
+//   {
+//     title: "",
+//     icon: FaSchool,
+//   },
+//   */
+//   {
+//     title: "home",
+//     icon: House,
+//   },
+//   {
+//     title: "search",
+//     icon: Search,
+//   },
+//   {
+//     title: "learn",
+//     icon: Lightbulb,
+//   },
+//   {
+//     title: "study",
+//     icon: Book,
+//   },
 
-  /*{
-    title: "explore",
-    icon: Hash,
-  },
-  {
-    icon: Gear,
-    title: "setting",
-  },*/
-];
+//   /*{
+//     title: "explore",
+//     icon: Hash,
+//   },
+//   {
+//     icon: Gear,
+//     title: "setting",
+//   },*/
+// ];
 
 async function ContentPage() {
   //const { supabase, supabaseServer } = createSupabase();

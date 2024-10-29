@@ -42,7 +42,7 @@ export default function SignUpPage({
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
     const username = formData.get("username") as string;
-    const full_name = formData.get("full_name") as string;
+    //const full_name = formData.get("full_name") as string;
 
     const supabase = createClient();
 
@@ -53,7 +53,7 @@ export default function SignUpPage({
         emailRedirectTo: `${origin}/auth/callback`,
         data: {
           username,
-          full_name,
+          // full_name,
         },
       },
     });
@@ -71,7 +71,7 @@ export default function SignUpPage({
   return (
     <div className="flex min-h-[100dvh] flex-col bg-[#020617] text-white">
       <header className="flex items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
-        <div className="flex items-center gap-2">
+        <div className=" gap-2 flex items-center justify-between px-4 py-3 sm:px-6 lg:px-8 ml-[30%]">
           <GraduationCapIcon className="h-6 w-6 text-white" />
           <span className="text-lg font-bold text-white"> studenthub</span>
         </div>
