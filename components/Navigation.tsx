@@ -54,7 +54,7 @@ const Navigation = () => {
             <div className="flex flex-col h-full items-stretch space-y-4 mt-4 ">
               {Navigation_Item.map((item) => (
                 <Link
-                  className="hover:primary text-lg transition duration-200 rounded-3xl flex items-center justify-start space-x-4 mt-2 px-4 py-2 font-bold w-fit"
+                  className="hover:bg-white/95 text-lg transition duration-200 rounded-3xl flex items-center justify-start space-x-4 mt-2 px-4 py-2 font-bold w-fit"
                   href={`/${item.title.toLowerCase()}`}
                   key={item.title}
                 >
@@ -65,7 +65,7 @@ const Navigation = () => {
                 </Link>
               ))}
             </div>
-            <button className="rounded-full flex items-center space-x-2 bg-transparent m-4 text-2xl text-center hover:bg-background-70 transition duration-200 hover:bg-background/20 w-full">
+            <button className="rounded-full flex items-center space-x-2 bg-transparent m-4 text-2xl text-center  transition duration-200  w-full">
               <AuthButton />
               <div className="pl-7 pr-0">
                 <ThreeDots />
