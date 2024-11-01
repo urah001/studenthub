@@ -1,7 +1,7 @@
 "use server";
 import { Database } from "@/types/supabase";
 import { createSupabase } from ".";
-import { pool } from "@/lib/db";
+import { pool } from "@/app/lib";
 import { revalidatePath } from "next/cache";
 
 export type GistType = Database["public"]["Tables"]["gists"]["Row"] & {
