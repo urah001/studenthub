@@ -1,8 +1,8 @@
 "use server";
 import { Database } from "@/types/supabase";
 import { createSupabase } from ".";
-import { pool } from "@/app/lib";
 import { revalidatePath } from "next/cache";
+import { pool } from "@/lib";
 
 export type GistType = Database["public"]["Tables"]["gists"]["Row"] & {
   username: string;
@@ -43,18 +43,6 @@ export const getGist = async (currentUserId?: string) => {
   } catch (error) {
     console.log(error);
   }
-  // return await supabase
-  //   .from("gists")
-  //   .select(
-  //     `*,
-  //      profiles
-  //      (
-  //        full_name,
-  //    username
-  //  )
-  //  `
-  //   )
-  //   .returns<GistType[]>();
 };
 
 //supabaseserver is used to get little role level authorisation so pls leave it alone

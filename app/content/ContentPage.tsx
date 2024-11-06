@@ -6,67 +6,17 @@ import relativeTime from "dayjs/plugin/relativeTime";
 import { Gist } from "../gist/Gist";
 import { getGist } from "../gist/queries";
 /*here*/ import { createSupabase } from "../gist";
-import { getCurrentUser } from "../lib/data";
-import { redirect } from "next/navigation";
-import {
-  Book,
-  Chat,
-  Gear,
-  Hash,
-  House,
-  Lightbulb,
-  Search,
-} from "react-bootstrap-icons";
+import { getCurrentUser } from "../../lib/data";
+
 import MobileNav from "@/components/MobileNav";
 import FloatingActionButton from "@/components/FAB";
 import { createClient } from "@/utils/supabase/server";
 
 dayjs.extend(relativeTime);
-// const Navigation_Item = [
-//   /*
-//   {
-//     title: "",
-//     icon: FaSchool,
-//   },
-//   */
-//   {
-//     title: "home",
-//     icon: House,
-//   },
-//   {
-//     title: "search",
-//     icon: Search,
-//   },
-//   {
-//     title: "learn",
-//     icon: Lightbulb,
-//   },
-//   {
-//     title: "study",
-//     icon: Book,
-//   },
-
-//   /*{
-//     title: "explore",
-//     icon: Hash,
-//   },
-//   {
-//     icon: Gear,
-//     title: "setting",
-//   },*/
-// ];
-
 async function ContentPage() {
-  //const { supabase, supabaseServer } = createSupabase();
   const getCurrent = await getCurrentUser();
-  const res = await getGist(getCurrent?.user.id);
-  // const supabaseClient = createClient();
-  // const { data: userDate, error: userError } =
-  //   await supabaseClient.auth.getUser();
-  //const res = await getGist(userDate?.user?.id);
-  // if (getCurrent?.user.id === undefined) {
-  //   return redirect("/protected");
-  // }
+  const res = await getGist();
+
   return (
     <>
       {/*main content */}

@@ -13,8 +13,6 @@ export default async function Index() {
   } = await supabase.auth.getUser();
 
   const canInitSupabaseClient = () => {
-    // This function is just for the interactive tutorial.
-    // Feel free to remove it once you have Supabase connected.
     try {
       createClient();
       return true;
@@ -60,7 +58,7 @@ export default async function Index() {
                 </p>
                 <div className="mt-6 flex items-center gap-4">
                   <Link
-                    href="#"
+                    href="/login"
                     className="inline-flex items-center rounded-md bg-[#f5b461] px-4 py-2 text-sm font-medium text-[#020617] transition-colors hover:bg-[#ea580c] focus:outline-none focus:ring-2 focus:ring-[#ea580c] focus:ring-offset-2"
                     prefetch={false}
                   >
@@ -112,7 +110,7 @@ export default async function Index() {
                 </p>
                 <div className="mt-6 flex items-center gap-4">
                   <Link
-                    href="#"
+                    href="/login"
                     className="inline-flex items-center rounded-md bg-[#ea580c] px-4 py-2 text-sm font-medium text-[#020617] transition-colors hover:bg-[#f5b461] focus:outline-none focus:ring-2 focus:ring-[#ea580c] focus:ring-offset-2"
                     prefetch={false}
                   >
@@ -143,7 +141,7 @@ export default async function Index() {
                 </p>
                 <div className="mt-6 flex items-center gap-4">
                   <Link
-                    href="#"
+                    href="/login"
                     className="inline-flex items-center rounded-md bg-[#ea580c] px-4 py-2 text-sm font-medium text-[#020617] transition-colors hover:bg-[#f5b461] focus:outline-none focus:ring-2 focus:ring-[#ea580c] focus:ring-offset-2"
                     prefetch={false}
                   >
