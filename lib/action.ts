@@ -1,12 +1,9 @@
 "use server";
 import { revalidatePath, revalidateTag } from "next/cache";
-
+import { useForm } from "react-hook-form";
 import { date, z } from "zod";
 import { randomUUID } from "crypto";
-import { createSupabase } from "../app/gist";
-import { db } from "./db";
-import { gists } from "./db/schema";
-import { getCurrentUser } from "./data";
+import { createSupabase } from "@/app/gist";
 
 const FormSchema = z.object({
   title: z
@@ -19,21 +16,35 @@ const FormSchema = z.object({
     }),
 });
 
-export async function handleSubmitGist(formData: FormData) {
-  const { supabase } = createSupabase();
+// export async function ProfileForm() {
+//   // 1. Define your form.
+//   const form = useForm<z.infer<typeof FormSchema>>({
+//     // resolver: zodResolver(FormSchema),
+//     defaultValues: {
+//       title: "",
+//     },
+//   });
+// }
+
+export async function handleSubmitGist(
+  formData: FormData
+  // values: z.infer<typeof FormSchema>
+) {
+  //const supabase = createClient();
+  const { supabase, supabaseServer } = createSupabase();
   const gist = formData.get("gist");
   if (!gist) return;
 
-  // const {
-  //   data: { user },
-  // } = await supabase.auth.getUser();
-  // const metadata = user;
-  // const date = new Date().toISOString();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  const metadata = user;
+  const date = new Date().toISOString();
 
   const rawFormData = {
     id: randomUUID(),
     text: gist,
-    profile_id: getCurrentUser, //check here for optimization
+    profile_id: metadata?.id,
     created_at: date,
     updated_at: date,
   };
@@ -41,16 +52,6 @@ export async function handleSubmitGist(formData: FormData) {
   revalidatePath("/");
 
   try {
-    // await db
-    //   .insert(gists)
-    //   .values({
-    //     gist_id: randomUUID(),
-    //     text: gist.toString(),
-    //     profileId: getCurrentUser, //check here for optimization
-    //   })
-    //   .returning().catch(()=>{
-    // err = "something went wrong "
-    // });
     await supabase.from("gists").insert(rawFormData);
   } catch (error) {
     return {
@@ -59,3 +60,7 @@ export async function handleSubmitGist(formData: FormData) {
     //toast.error(" gist not sent ");
   }
 }
+
+// function createClient() {
+//   throw new Error("Function not implemented.");
+// }
