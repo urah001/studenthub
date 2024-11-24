@@ -7,10 +7,9 @@ import { Gist } from "../gist/Gist";
 import { getGist } from "../gist/queries";
 /*here*/ import { createSupabase } from "../gist";
 import { getCurrentUser } from "../../lib/data";
-
 import MobileNav from "@/components/MobileNav";
 import FloatingActionButton from "@/components/FAB";
-import { createClient } from "@/utils/supabase/server";
+
 
 dayjs.extend(relativeTime);
 async function ContentPage() {

@@ -29,6 +29,6 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "components/server-component/z"
-  ],
+, "app/post/[id].js", "app/post/[id]/page.ts", "app/post/[id]/page.ts", "app/post/[id]/page.tsx", "app/post/[id]/page.tsx"  ],
   "exclude": ["node_modules"]
 }

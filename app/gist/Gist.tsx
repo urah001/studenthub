@@ -1,12 +1,13 @@
 "use server";
-
-import { Chat, Dot, Heart, Send, ThreeDots } from "react-bootstrap-icons";
-import { FaRetweet } from "react-icons/fa";
+import { Dot,Send, ThreeDots } from "react-bootstrap-icons";
 import dayjs, { Dayjs } from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { getLikeCount, GistType, isLiked } from "./queries";
 import LikeBtn from "./likeBtn";
 import { MessageCircleIcon, RetweetIcon } from "@/components @/icon";
+import Link from "next/link";
+//import PostDetails from "./post/[id]";
+
 
 dayjs.extend(relativeTime);
 
@@ -14,6 +15,8 @@ type Gistprops = {
   gist: GistType;
   currentUserId: string | undefined;
 };
+
+
 
 export const Gist = async ({ gist, currentUserId }: Gistprops) => {
   const getGistLikesCount = await getLikeCount(gist.id);
@@ -23,12 +26,16 @@ export const Gist = async ({ gist, currentUserId }: Gistprops) => {
     userId: currentUserId,
   });
 
+  
+
   return (
     <div>
+      <Link href={`/post/${gist.id}`}>
       <div
         key={gist.id}
         className="border-t-[0.1px] py-2 px-6 border-b-[0.1px] flex space-x-4 overflow-hidden bg-[#020617] rounded-lg shadow-lg p-4 mt-4 border-none"
       >
+      
         <div>
           <div className="w-10 h-10 bg-slate-200 rounded-full" />
         </div>
@@ -78,7 +85,7 @@ export const Gist = async ({ gist, currentUserId }: Gistprops) => {
             />
             {/*
           --
-          message
+          comment 
           --
           */}
             <div className="rounded-full hover:bg-white/20 transition duration-200 p-2 cursor-pointer">
@@ -103,6 +110,7 @@ export const Gist = async ({ gist, currentUserId }: Gistprops) => {
           </div>
         </div>
       </div>
+        </Link>
     </div>
   );
 };
