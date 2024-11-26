@@ -1,59 +1,58 @@
-import { getGist } from "@/app/gist/queries"; // Ensure the getGist function is correctly imported
+"use server";
+import { getGist, getComments } from "@/app/gist/queries";
 import Navigation from "@/components/Navigation";
 import Explore from "@/components/Explore";
+import AddCommentClient from "@/components/AddComment"; // Client component for adding comments
 import Link from "next/link";
 
-
 type Params = {
-  id: string; // Replace with the actual structure of `params`
+  id: string;
 };
 
-export default async function PostPage({ params }: {params : Params}) {
+export default async function PostPage({ params }: { params: Params }) {
   const { id } = params;
 
   // Fetch the post by ID using the getGist function
-  const { data: posts, error } = await getGist(); // You can pass currentUserId if needed
-
+  const { data: posts, error } = await getGist();
   if (error || !posts) {
     return <div className="text-center text-white">Post not found!</div>;
   }
 
   // Find the post with the matching ID
   const post = posts.find((p) => p.id === id);
-
   if (!post) {
     return <div className="text-center text-white">Post not found!</div>;
   }
 
   return (
     <div className="w-full h-full flex justify-between items-start bg-background text-foreground">
-      {/* Left Sidebar: Explore */}
+      {/* Left Sidebar */}
       <div className="hidden lg:block w-1/5 h-full p-4 bg-[#0b1121]">
         <Navigation />
       </div>
 
       {/* Center: Post Content */}
       <div className="flex-1 min-h-screen bg-[#020617] text-white p-6 max-w-[70%] mx-auto">
-        
-        {/* navigate back  */}
+        {/* Back Navigation */}
         <div className="items-center space-x-2 mb-4 cursor-pointer group flex">
           <Link href={"/protected"}>
-          
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="mr-2 h-4 w-4 transition-transform group-hover:-translate-x-1"
-          >
-            <polyline points="15 18 9 12 15 6" />
-          </svg>
-          <span className="text-md text-gray-300 group-hover:text-white font-bold">post</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="mr-2 h-4 w-4 transition-transform group-hover:-translate-x-1"
+            >
+              <polyline points="15 18 9 12 15 6" />
+            </svg>
+            <span className="text-md text-gray-300 group-hover:text-white font-bold">
+              Back
+            </span>
           </Link>
         </div>
 
@@ -65,17 +64,64 @@ export default async function PostPage({ params }: {params : Params}) {
               <div className="text-gray-500">@{post.username}</div>
             </div>
           </div>
-          <div className="mt-4 whitespace-pre-wrap break-words">{post.text}</div>
+          <div className="mt-4 whitespace-pre-wrap break-words">
+            {post.text}
+          </div>
           <div className="text-gray-500 mt-2">
             Posted {new Date(post.created_at).toLocaleString()}
           </div>
+{/* add reaction here */}
+          {/* comments */}
+          <div>
+            <input type="text" placeholder="addnew comment" />
+          </div>
+          {/* comment section */}
+          <div className="mt-6">
+            <h2 className="text-lg font-bold mb-4">Comments</h2>
+            <div className="border-b-[0.1px] border-gray-600 py-2">
+              <div className="text-sm">
+                <span className="font-bold">full name</span>
+                <span className="text-gray-500 ml-2">@username</span>
+              </div>
+              <div className="text-gray-300 mt-1">randome text</div>
+            </div>
+          </div>
+
+          {/* comments */}
         </div>
       </div>
 
-      {/* Right Sidebar: Navigation */}
+      {/* Right Sidebar */}
       <div className="hidden lg:block w-1/5 h-full p-4 bg-[#0b1121]">
         <Explore />
       </div>
     </div>
   );
+}
+
+{
+  /* Comments Section */
+}
+{
+  /*
+        <div className="mt-6">
+        <h2 className="text-lg font-bold mb-4">Comments</h2>
+         {comments?.length > 0 ? (
+          comments.map((comment) => (
+            <div
+              key={comment.id}
+              className="border-b-[0.1px] border-gray-600 py-2"
+            >
+              <div className="text-sm">
+                <span className="font-bold">{comment.full_name}</span>
+                <span className="text-gray-500 ml-2">@{comment.username}</span>
+              </div>
+              <div className="text-gray-300 mt-1">{comment.text}</div>
+            </div>
+          ))
+        ) : ( 
+          <div className="text-gray-500">No comments yet.</div>
+        )}
+      </div> 
+    </div>*/
 }

@@ -110,3 +110,14 @@ export const isLiked = async ({
     .single();
   return Boolean(data?.id);
 };
+
+
+export async function getComments(postId: string) {
+  const { supabaseServer } = createSupabase();
+  const { data, error } = await supabaseServer
+    .from("gists_replies")
+    .select("*")
+    .eq("gist_id", postId)
+    .order("created_at", { ascending: true });
+  return { data, error };
+}

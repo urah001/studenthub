@@ -33,3 +33,10 @@ export const unLikeGist = async (
     "gist id ": gistId,
   });
 };
+
+export async function addComment(postId: string, text: string) {
+  const { data, error } = await supabaseServer
+    .from("comments")
+    .insert([{ gist_id: postId, text }]);
+  return { data, error };
+}
