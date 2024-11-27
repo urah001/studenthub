@@ -34,8 +34,8 @@ export default async function PostPage({ params }: { params: Params }) {
       {/* Center: Post Content */}
       <div className="flex-1 min-h-screen bg-[#020617] text-white p-6 max-w-[70%] mx-auto">
         {/* Back Navigation */}
-        <div className="items-center space-x-2 mb-4 cursor-pointer group flex">
-          <Link href={"/protected"}>
+        <Link href={"/protected"}>
+          <div className="items-center space-x-1 mb-4 cursor-pointer group flex flex-row">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -50,11 +50,11 @@ export default async function PostPage({ params }: { params: Params }) {
             >
               <polyline points="15 18 9 12 15 6" />
             </svg>
-            <span className="text-md text-gray-300 group-hover:text-white font-bold">
+            <div className="text-md  group-hover:text-white font-bold">
               Back
-            </span>
-          </Link>
-        </div>
+            </div>
+          </div>
+        </Link>
 
         {/* Post Container */}
         <div className="border-t-[0.1px] py-4 px-6 bg-[#0b1121] rounded-lg shadow-lg">
@@ -70,11 +70,20 @@ export default async function PostPage({ params }: { params: Params }) {
           <div className="text-gray-500 mt-2">
             Posted {new Date(post.created_at).toLocaleString()}
           </div>
-{/* add reaction here */}
           {/* comments */}
-          <div>
-            <input type="text" placeholder="addnew comment" />
+          <div className="flex flex-row items-center space-x-2 p-4 bg-[#0b1121] rounded-lg shadow-md">
+            {/* <!-- Profile Picture Placeholder --> */}
+            <div className="h-10 w-10 rounded-full bg-gray-600"></div>
+
+            {/* <!-- Input Box --> */}
+            {/* <input
+              type="text"
+              placeholder="Add a new comment"
+              className="flex-1 bg-[#1e293b] text-white placeholder-gray-400 rounded-full px-4 py-2 border border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              /> */}
+            <AddCommentClient postId={post.id} />
           </div>
+
           {/* comment section */}
           <div className="mt-6">
             <h2 className="text-lg font-bold mb-4">Comments</h2>
@@ -85,9 +94,8 @@ export default async function PostPage({ params }: { params: Params }) {
               </div>
               <div className="text-gray-300 mt-1">randome text</div>
             </div>
+            {/* add reaction here */}
           </div>
-
-          {/* comments */}
         </div>
       </div>
 
@@ -99,7 +107,7 @@ export default async function PostPage({ params }: { params: Params }) {
   );
 }
 
-{
+{``
   /* Comments Section */
 }
 {

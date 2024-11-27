@@ -10,9 +10,9 @@ export const likeGist = async (gistId: string, userId: string | undefined) => {
   const { data, error } = await supabaseServer.from("likes").insert({
     id: randomUUID(),
     gist_id: gistId,
-    user_id: (await user).data.user?.id,
+    user_id: userId,
   });
-  console.log({ "like data:": data, "like error": error, "gist id ": gistId });
+  console.log({ "like data:": data, "like error": error, "gist id ": gistId, "userId": userId });
   revalidatePath("/");
 };
 

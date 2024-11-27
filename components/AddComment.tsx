@@ -34,20 +34,20 @@ export default function AddCommentClient({ postId }: Props) {
   };
 
   return (
-    <div className="mt-4">
-      <textarea
+    <div>
+      <input
         value={commentText}
         onChange={(e) => setCommentText(e.target.value)}
-        className="w-full bg-[#0b1121] text-white p-2 rounded-md"
+        className="flex-1 bg-[#1e293b] text-white placeholder-gray-400 rounded-full px-4 py-2 border border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
         placeholder="Write a comment..."
-        rows={4}
-      ></textarea>
+       
+      />
       <button
         onClick={handleSubmit}
         disabled={isSubmitting}
-        className="mt-2 bg-blue-600 text-white px-4 py-2 rounded-md disabled:bg-gray-600"
+        className="mt-2 primary text-white px-4 py-2 rounded-md disabled:bg-gray-600"
       >
-        {isSubmitting ? "Submitting..." : "Post Comment"}
+        {isSubmitting ? "Submitting..." : "Gist"}
       </button>
     </div>
   );
