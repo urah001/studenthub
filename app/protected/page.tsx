@@ -1,6 +1,6 @@
 import Navigation from "@/components/Navigation";
-import ContentPage from "@/app/content/ContentPage";
 import Explore from "@/components/Explore";
+import ContentPage from "@/app/content/ContentPage";
 
 export default async function ProtectedPage() {
   return (

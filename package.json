@@ -3,7 +3,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "migrate": "npx bun run lib/db/migrate.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.4.2",
@@ -16,6 +17,7 @@
     "@supabase/auth-ui-shared": "^0.1.8",
     "@supabase/ssr": "^0.5.1",
     "@supabase/supabase-js": "^2.44.4",
+    "@types/pg": "^8.11.10",
     "autoprefixer": "10.4.17",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
@@ -25,7 +27,7 @@
     "geist": "^1.2.1",
     "next": "^14.2.5",
     "next-themes": "^0.3.0",
-    "pg": "^8.12.0",
+    "pg": "^8.13.1",
     "pg-pool": "^3.6.2",
     "postcss": "8.4.33",
     "postcss-nested": "^6.0.1",

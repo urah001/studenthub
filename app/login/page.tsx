@@ -4,16 +4,7 @@ import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import { SubmitButton } from "./submit-button";
 import SignInAuthBtn from "../SignUp/SignUp-AuthBtn";
-import { toast } from "sonner";
 import { FailedAuth } from "@/components/sonnerCom";
-
-const sonnerMsg = () => {
-  toast.error("authentication failed , checkemail or password", {
-    className: "bg-background text-foreground text-lg",
-    // description: "testing this description",
-    duration: 3000,
-  });
-};
 
 export default function Login({
   searchParams,

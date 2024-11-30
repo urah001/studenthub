@@ -1,32 +1,44 @@
 "use server";
-
-import { Chat, Dot, Heart, Send, ThreeDots } from "react-bootstrap-icons";
-import { FaRetweet } from "react-icons/fa";
+import { Dot, Send, ThreeDots } from "react-bootstrap-icons";
 import dayjs, { Dayjs } from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { getLikeCount, GistType, isLiked } from "./queries";
 import LikeBtn from "./likeBtn";
 import { MessageCircleIcon, RetweetIcon } from "@/components @/icon";
+import Link from "next/link";
+import { gist, Profile, profiles, profilesRelations } from "@/lib/db/schema";
 
 dayjs.extend(relativeTime);
 
 type Gistprops = {
-  gist: GistType;
+  //gist: GistType;
+  gist: {
+    userProfile: Profile;
+    gistDetails: gist;
+  };
   currentUserId: string | undefined;
 };
 
 export const Gist = async ({ gist, currentUserId }: Gistprops) => {
-  const getGistLikesCount = await getLikeCount(gist.id);
+  const getGistLikesCount = await getLikeCount(gist.gistDetails.id);
+ // console.log("gist", gist);
   console.log(getGistLikesCount.count);
   const isUserHasLiked = await isLiked({
-    gistId: gist.id,
+    gistId: gist.gistDetails.id,
     userId: currentUserId,
   });
 
+  {
+    /* 
+    use chess algorithm for the post sorting
+    for example  the best move after certain move is played
+    */
+  }
+  //console.log("userid-gist", currentUserId, "gistid-gist", gist.id);
   return (
     <div>
       <div
-        key={gist.id}
+        key={gist.gistDetails.id}
         className="border-t-[0.1px] py-2 px-6 border-b-[0.1px] flex space-x-4 overflow-hidden bg-[#020617] rounded-lg shadow-lg p-4 mt-4 border-none"
       >
         <div>
@@ -42,15 +54,15 @@ export const Gist = async ({ gist, currentUserId }: Gistprops) => {
           <div className="flex items-center w-full justify-between">
             <div className="flex items-center space-x-1">
               {/* remeber to fix this  */}
-              <div className="font-bold">{gist.full_name} </div>
+              <div className="font-bold">{gist.userProfile.fullName}</div>
               {/* user name */}
-              <div className="text-gray-500">@{gist.username}</div>
+              <div className="text-gray-500">@{gist.userProfile.username}</div>
               {/* dot after name */}
               <div>
                 <Dot />
               </div>
               <div className="text-gray-500">
-                {dayjs(gist.created_at).fromNow()}
+                {dayjs(gist.userProfile.createdAt).fromNow()}
               </div>
             </div>
             <div className="rounded-full hover:bg-white/20 transition duration-200 p-2 cursor-pointer">
@@ -60,7 +72,9 @@ export const Gist = async ({ gist, currentUserId }: Gistprops) => {
 
           {/* media (comment and image) */}
           <div className="text-white text-sm">
-            <div className="whitespace-pre-wrap break-words">{gist.text}</div>
+            <Link href={`/post/${gist.gistDetails.id}`}>
+              <div className="whitespace-pre-wrap break-words">{gist.gistDetails.text}</div>
+            </Link>
           </div>
 
           {/* icons: like, comment, repost, share */}
@@ -71,14 +85,14 @@ export const Gist = async ({ gist, currentUserId }: Gistprops) => {
           --
           */}
             <LikeBtn
-              gistId={gist.id}
+              gistId={gist.gistDetails.id}
               userId={currentUserId}
               likesCount={getGistLikesCount.count}
               isUserHasLiked={isUserHasLiked}
             />
             {/*
           --
-          message
+          comment 
           --
           */}
             <div className="rounded-full hover:bg-white/20 transition duration-200 p-2 cursor-pointer">

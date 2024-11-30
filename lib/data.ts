@@ -1,6 +1,6 @@
 "use server";
 
-import { createSupabase } from "../gist";
+import { createSupabase } from "../app/gist";
 
 /*
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
