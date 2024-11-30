@@ -2,17 +2,31 @@
 import { randomUUID } from "crypto";
 import { revalidatePath } from "next/cache";
 import { createSupabase } from ".";
+import { db } from "@/lib/db";
+import { likes } from "@/lib/db/schema";
 
 const { supabase, supabaseServer } = createSupabase();
-export const likeGist = async (gistId: string, userId: string | undefined) => {
-  const user = supabase.auth.getUser();
-
-  const { data, error } = await supabaseServer.from("likes").insert({
-    id: randomUUID(),
-    gist_id: gistId,
-    user_id: userId,
-  });
-  console.log({ "like data:": data, "like error": error, "gist id ": gistId, "userId": userId });
+export const likeGist = async (gistId: string, userId: any) => {
+  const id = randomUUID();
+  const res = await db
+    .insert(likes)
+    .values({
+      id,
+      gistId,
+      userId,
+    })
+    .catch((err) => {
+      console.log("like error", err);
+    });
+  {
+    /*console.log({
+    "like data:": res,
+    "like error": error.toString(),
+    "gist id ": gistId,
+    userId: userId,
+  });*/
+  }
+  console.log(res);
   revalidatePath("/");
 };
 
@@ -36,7 +50,7 @@ export const unLikeGist = async (
 
 export async function addComment(postId: string, text: string) {
   const { data, error } = await supabaseServer
-    .from("comments")
+    .from("replies")
     .insert([{ gist_id: postId, text }]);
   return { data, error };
 }

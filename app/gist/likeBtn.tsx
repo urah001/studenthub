@@ -2,8 +2,6 @@
 
 import React, { useState, useTransition } from "react";
 import { likeGist, unLikeGist } from "./mutation";
-import { Heart, HeartFill } from "react-bootstrap-icons";
-import { string } from "zod";
 import { HeartIcon } from "@/components @/icon";
 
 type LikeGistprops = {

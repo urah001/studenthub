@@ -10,7 +10,6 @@ import { getCurrentUser } from "../../lib/data";
 import MobileNav from "@/components/MobileNav";
 import FloatingActionButton from "@/components/FAB";
 
-
 dayjs.extend(relativeTime);
 async function ContentPage() {
   const getCurrent = await getCurrentUser();
@@ -33,14 +32,20 @@ async function ContentPage() {
 
         <div className="flex flex-col w-full">
           {/* {res?.error && <div>Review your network and try again</div>} */}
-          {res?.data &&
-            res.data.map((gist: any) => (
-              <Gist
-                key={gist.id}
-                gist={gist}
-                currentUserId={getCurrent?.user.id}
-              />
-            ))}
+          {res.data?.map(({ gists, profiles, likes }) => (
+            <Gist
+              key={gists.id}
+              gist={{
+                gistDetails: {
+                  ...gists,
+                },
+                userProfile: {
+                  ...profiles,
+                },
+              }}
+              currentUserId={getCurrent?.user.id}
+            />
+          ))}
         </div>
 
         <FloatingActionButton />

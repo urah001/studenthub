@@ -1,5 +1,5 @@
 "use server";
-import { getGist, getComments } from "@/app/gist/queries";
+import { getGist } from "@/app/gist/queries";
 import Navigation from "@/components/Navigation";
 import Explore from "@/components/Explore";
 import AddCommentClient from "@/components/AddComment"; // Client component for adding comments
@@ -12,7 +12,7 @@ type Params = {
 export default async function PostPage({ params }: { params: Params }) {
   const { id } = params;
 
-  // Fetch the post by ID using the getGist function
+  /*// Fetch the post by ID using the getGist function
   const { data: posts, error } = await getGist();
   if (error || !posts) {
     return <div className="text-center text-white">Post not found!</div>;
@@ -22,7 +22,8 @@ export default async function PostPage({ params }: { params: Params }) {
   const post = posts.find((p) => p.id === id);
   if (!post) {
     return <div className="text-center text-white">Post not found!</div>;
-  }
+  }*/
+  
 
   return (
     <div className="w-full h-full flex justify-between items-start bg-background text-foreground">
@@ -60,15 +61,15 @@ export default async function PostPage({ params }: { params: Params }) {
         <div className="border-t-[0.1px] py-4 px-6 bg-[#0b1121] rounded-lg shadow-lg">
           <div className="flex items-center space-x-4">
             <div>
-              <div className="font-bold">{post.full_name}</div>
-              <div className="text-gray-500">@{post.username}</div>
+              <div className="font-bold">{/*{post.full_name}*/}</div>
+              <div className="text-gray-500">{/*@{post.username}*/}</div>
             </div>
           </div>
           <div className="mt-4 whitespace-pre-wrap break-words">
-            {post.text}
+           {/* {post.text}*/}
           </div>
           <div className="text-gray-500 mt-2">
-            Posted {new Date(post.created_at).toLocaleString()}
+            Posted {/*{new Date(post.created_at).toLocaleString()}*/}
           </div>
           {/* comments */}
           <div className="flex flex-row items-center space-x-2 p-4 bg-[#0b1121] rounded-lg shadow-md">
@@ -81,7 +82,9 @@ export default async function PostPage({ params }: { params: Params }) {
               placeholder="Add a new comment"
               className="flex-1 bg-[#1e293b] text-white placeholder-gray-400 rounded-full px-4 py-2 border border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               /> */}
-            <AddCommentClient postId={post.id} />
+           {/* <AddCommentClient 
+           {/* postId={post.id} 
+            />*/}
           </div>
 
           {/* comment section */}
@@ -89,10 +92,10 @@ export default async function PostPage({ params }: { params: Params }) {
             <h2 className="text-lg font-bold mb-4">Comments</h2>
             <div className="border-b-[0.1px] border-gray-600 py-2">
               <div className="text-sm">
-                <span className="font-bold">full name</span>
-                <span className="text-gray-500 ml-2">@username</span>
+                <span className="font-bold"> full name</span>
+                <span className="text-gray-500 ml-2"> @username</span>
               </div>
-              <div className="text-gray-300 mt-1">randome text</div>
+              <div className="text-gray-300 mt-1">user comment</div>
             </div>
             {/* add reaction here */}
           </div>

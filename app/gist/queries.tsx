@@ -3,15 +3,19 @@ import { Database } from "@/types/supabase";
 import { createSupabase } from ".";
 import { revalidatePath } from "next/cache";
 import { pool } from "@/lib";
+import { db } from "@/lib/db";
+import { gists, likes, profiles } from "@/lib/db/schema";
+import { desc, eq } from "drizzle-orm";
+import { error } from "console";
 
 export type GistType = Database["public"]["Tables"]["gists"]["Row"] & {
   username: string;
   full_name: string;
 };
 
-
 export const getGist = async (currentUserId?: string) => {
-  const query = `
+  {
+    /* const query = `
     SELECT
       gists.*,
       profiles.username,
@@ -34,18 +38,53 @@ export const getGist = async (currentUserId?: string) => {
     ORDER BY
       gists.created_at DESC;
   `;
-  
+  */
+  }
   try {
-    const res = await pool.query(query, [currentUserId]);
-    revalidatePath("/");
-    return { data: res.rows };
+    //  const res = await pool.query(query, [currentUserId]);
+    // const res = await db.query.gists.findMany({
+    //   with:{
+    //     profile:{
+    //     columns:{
+    //       username:true,
+    //       fullName:true
+    //     }
+    //     }
+    //   }
+    // })
+    let err = "";
+    const res = await db
+      .select()
+      .from(gists)
+      .leftJoin(likes, eq(gists.id, likes.gistId))
+      .innerJoin(profiles, eq(gists.profileId, profiles.id))
+      .orderBy(desc(gists.createdAt))
+      .limit(5)
+      .catch(() => {
+        err = "something went wrong while fetching all the gist";
+      });
+    //revalidatePath("/");
+    //console.log("response");
+
+    return { data: res, error: err };
+    // return { data: res.rows };
   } catch (error) {
     console.log(error);
     return { error };
   }
 };
 
+/*export const getComment = async (postId: string) => {
+  const { supabaseServer } = createSupabase();
+  const { data, error } = await supabaseServer
+    .from("gists_replies")
+    .select("*")
+    .eq("gist_id", postId)
+    .order("created_at", { ascending: true });
+  return { data, error };
+}
 
+*/
 
 // const query = `SELECT
 //     gists.*,
@@ -71,7 +110,7 @@ export const getGist = async (currentUserId?: string) => {
 
 // `;
 // export const getGist = async (currentUserId?: string) => {
-  
+
 //   try {
 //     const res = await pool.query(query, [currentUserId]);
 //     revalidatePath("/");
@@ -110,14 +149,3 @@ export const isLiked = async ({
     .single();
   return Boolean(data?.id);
 };
-
-
-export async function getComments(postId: string) {
-  const { supabaseServer } = createSupabase();
-  const { data, error } = await supabaseServer
-    .from("gists_replies")
-    .select("*")
-    .eq("gist_id", postId)
-    .order("created_at", { ascending: true });
-  return { data, error };
-}

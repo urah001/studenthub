@@ -21,7 +21,7 @@ export const profiles = pgTable("profiles", {
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   username: text("username").notNull(),
-  fullName: text("full_name").notNull(),
+  fullName: text("full_name").notNull(), 
   //avatarUrl: text("avatar_url"),
 });
 
