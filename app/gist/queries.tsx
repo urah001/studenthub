@@ -6,7 +6,7 @@ import { pool } from "@/lib";
 import { db } from "@/lib/db";
 import { gists, likes, profiles } from "@/lib/db/schema";
 import { desc, eq } from "drizzle-orm";
-import { error } from "console";
+
 
 export type GistType = Database["public"]["Tables"]["gists"]["Row"] & {
   username: string;
@@ -63,6 +63,7 @@ export const getGist = async (currentUserId?: string) => {
       .catch(() => {
         err = "something went wrong while fetching all the gist";
       });
+      console.log("error",res)
     //revalidatePath("/");
     //console.log("response");
 
