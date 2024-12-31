@@ -1,6 +1,7 @@
 "use server";
 
 import { createSupabase } from "../app/gist";
+import { createClient } from "@/utils/supabase/server";
 
 /*
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -11,7 +12,8 @@ const supabase = createClient(
 );*/
 
 export async function getCurrentUser() {
-  const { supabase, supabaseServer } = createSupabase();
+  const supabase = createClient();
+  //const { supabase, supabaseServer } = createSupabase();
   const { data: user, error } = await supabase.auth.getUser();
   if (error) {
     console.error("Error fetching user:", error);

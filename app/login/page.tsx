@@ -25,7 +25,7 @@ export default function Login({
 
     if (error) {
       <FailedAuth />;
-      // return redirect("/login?message=incorrect username or password ");
+       return redirect("/login?message=incorrect username or password ");
     }
 
     return redirect("/protected");
