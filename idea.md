@@ -102,5 +102,6 @@ color pallete : use 60 30 10 rule
 
 ## REMEBER
 -dont use ur own created `const { supabase, supabaseServer } = createSupabase();` for anything , use the createClient
+- remember to fix the createsupabase function cause the error are from it 
 
 - u only pushed ur code to github to avoid any data lost while trying to fix ur kali 
