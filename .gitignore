@@ -27,7 +27,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
-#this .env*.local
+ .env*.local
 
 # vercel
 .vercel
@@ -37,4 +37,4 @@ yarn-error.log*
 next-env.d.ts
 
 # for me
-# this idea.md
+ idea.md
