@@ -22,7 +22,7 @@ type Gistprops = {
 export const Gist = async ({ gist, currentUserId }: Gistprops) => {
   const getGistLikesCount = await getLikeCount(gist.gistDetails.id);
  // console.log("gist", gist);
-  console.log(getGistLikesCount.count);
+  console.log("location: app/gist/gist.tsx",getGistLikesCount.count);
   const isUserHasLiked = await isLiked({
     gistId: gist.gistDetails.id,
     userId: currentUserId,

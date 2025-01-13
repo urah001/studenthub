@@ -25,18 +25,19 @@ export const getGist = async (currentUserId?: string) => {
       .catch(() => {
         err = "something went wrong while fetching all the gist";
       });
-      console.log("error",res)
+   // console.log("location: app/gist/queries.tsx", res);
     //revalidatePath("/");
     //console.log("response");
 
     return { data: res, error: err };
     // return { data: res.rows };
   } catch (error) {
-    console.log(error);
+  //  console.log("location: app/gist/queries.tsx", error)
     return { error };
   }
 };
-{/*export const getComment = async (postId?: string) => {
+{
+  /*export const getComment = async (postId?: string) => {
   try {
     let err = "";
     const res = await db
@@ -60,7 +61,8 @@ export const getGist = async (currentUserId?: string) => {
     console.log(error);
     return { error };
   }
-};*/}
+};*/
+}
 
 /*export const getComment = async (postId: string) => {
   const { supabaseServer } = createSupabase();

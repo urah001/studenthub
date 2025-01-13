@@ -80,7 +80,7 @@ export async function handleSubmitComment(formData: FormData) {
   revalidatePath("/");
 
   try {
-    console.log(rawFormData);
+    console.log("location: lib/action.ts",rawFormData);
     await supabase.from("gists_replies").insert(rawFormData);
   } catch (error) {
     return {

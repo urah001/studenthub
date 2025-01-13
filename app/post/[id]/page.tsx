@@ -12,18 +12,19 @@ type Params = {
 export default async function PostPage({ params }: { params: Params }) {
   const { id } = params;
 
-  /*// Fetch the post by ID using the getGist function
+  // Fetch the post by ID using the getGist function
   const { data: posts, error } = await getGist();
+  console.log("location: app/post/id/page.tsx", error);
   if (error || !posts) {
     return <div className="text-center text-white">Post not found!</div>;
   }
 
   // Find the post with the matching ID
-  const post = posts.find((p) => p.id === id);
-  if (!post) {
+  const post = posts.find((p) => p.gists.id === id);
+  /*if (!post) {
     return <div className="text-center text-white">Post not found!</div>;
   }*/
-  
+  console.log("location : app/post/id/page.tsx", post?.gists.text);
 
   return (
     <div className="w-full h-full flex justify-between items-start bg-background text-foreground">
@@ -59,22 +60,23 @@ export default async function PostPage({ params }: { params: Params }) {
 
         {/* Post Container */}
         <div className="border-t-[0.1px] py-4 px-6 bg-[#0b1121] rounded-lg shadow-lg">
-          <div className="flex items-center space-x-4">
-            <div>
-              <div className="font-bold">{/*{post.full_name}*/}</div>
-              <div className="text-gray-500">{/*@{post.username}*/}</div>
+          <div className="flex space-x-4">
+            <div className="h-10 w-10 rounded-full bg-gray-600"></div>
+            <div className="flex flex-row items-center">
+              <div className="font-bold">{post?.profiles.fullName}</div>
+              <div className="text-gray-500">@{post?.profiles.username}</div>
             </div>
           </div>
           <div className="mt-4 whitespace-pre-wrap break-words">
-           {/* {post.text}*/}
+            {post?.gists.text}
           </div>
           <div className="text-gray-500 mt-2">
-            Posted {/*{new Date(post.created_at).toLocaleString()}*/}
+            Posted {new Date(post?.profiles.createdAt).toLocaleString()}
           </div>
           {/* comments */}
           <div className="flex flex-row items-center space-x-2 p-4 bg-[#0b1121] rounded-lg shadow-md">
             {/* <!-- Profile Picture Placeholder --> */}
-            <div className="h-10 w-10 rounded-full bg-gray-600"></div>
+            {/* <div className="h-10 w-10 rounded-full bg-gray-600"></div> */}
 
             {/* <!-- Input Box --> */}
             {/* <input
@@ -82,7 +84,7 @@ export default async function PostPage({ params }: { params: Params }) {
               placeholder="Add a new comment"
               className="flex-1 bg-[#1e293b] text-white placeholder-gray-400 rounded-full px-4 py-2 border border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               /> */}
-           {/* <AddCommentClient 
+            {/* <AddCommentClient 
            {/* postId={post.id} 
             />*/}
           </div>
@@ -110,7 +112,8 @@ export default async function PostPage({ params }: { params: Params }) {
   );
 }
 
-{``
+{
+  ``;
   /* Comments Section */
 }
 {

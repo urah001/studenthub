@@ -26,7 +26,7 @@ export const likeGist = async (gistId: string, userId: any) => {
     userId: userId,
   });*/
   }
-  console.log(res);
+  console.log("location: app/gist/mutation.tsx",res);
   revalidatePath("/");
 };
 
