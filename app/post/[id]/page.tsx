@@ -71,7 +71,7 @@ export default async function PostPage({ params }: { params: Params }) {
             {post?.gists.text}
           </div>
           <div className="text-gray-500 mt-2">
-            Posted {new Date(post?.profiles.createdAt).toLocaleString()}
+            {/* Posted {new Date(post?.profiles.createdAt).toLocaleString()} */}
           </div>
           {/* comments */}
           <div className="flex flex-row items-center space-x-2 p-4 bg-[#0b1121] rounded-lg shadow-md">
