@@ -4,6 +4,7 @@ import Navigation from "@/components/Navigation";
 import Explore from "@/components/Explore";
 import AddCommentClient from "@/components/AddComment"; // Client component for adding comments
 import Link from "next/link";
+import CommentForm from "@/app/addComment/create-form";
 
 type Params = {
   id: string;
@@ -24,7 +25,7 @@ export default async function PostPage({ params }: { params: Params }) {
   /*if (!post) {
     return <div className="text-center text-white">Post not found!</div>;
   }*/
-  console.log("location : app/post/id/page.tsx", post?.gists.text);
+  console.log("location : app/post/[id]/page.tsx", error);
 
   return (
     <div className="w-full h-full flex justify-between items-start bg-background text-foreground">
@@ -74,19 +75,12 @@ export default async function PostPage({ params }: { params: Params }) {
             {/* Posted {new Date(post?.profiles.createdAt).toLocaleString()} */}
           </div>
           {/* comments */}
-          <div className="flex flex-row items-center space-x-2 p-4 bg-[#0b1121] rounded-lg shadow-md">
-            {/* <!-- Profile Picture Placeholder --> */}
-            {/* <div className="h-10 w-10 rounded-full bg-gray-600"></div> */}
+          <div className="flex flex-row items-center space-x-2 bg-[#0b1121] rounded-lg shadow-md p-4">
+            {/* Profile Picture Placeholder */}
+            <div className="h-10 w-10 rounded-full bg-gray-600"></div>
 
-            {/* <!-- Input Box --> */}
-            {/* <input
-              type="text"
-              placeholder="Add a new comment"
-              className="flex-1 bg-[#1e293b] text-white placeholder-gray-400 rounded-full px-4 py-2 border border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-              /> */}
-            {/* <AddCommentClient 
-           {/* postId={post.id} 
-            />*/}
+            {/* Input Box */}
+            <CommentForm />
           </div>
 
           {/* comment section */}

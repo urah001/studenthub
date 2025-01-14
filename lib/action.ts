@@ -6,6 +6,7 @@ import { randomUUID } from "crypto";
 import { createSupabase } from "@/app/gist";
 import { db } from "./db";
 import { gists } from "./db/schema";
+import { error } from "console";
 //$@custechICT
 const FormSchema = z.object({
   title: z
@@ -45,11 +46,13 @@ export async function handleSubmitGist(
 
   try {
     await supabase.from("gists").insert(rawFormData);
-    {/*const res = await db.insert(gists).values({
+    {
+      /*const res = await db.insert(gists).values({
       id: randomUUID(),
       text: gist.toString(),
       profile_id: metadata?.id,
-    });*/}
+    });*/
+    }
   } catch (error) {
     return {
       message: "database error : failed to create gist",
@@ -70,7 +73,7 @@ export async function handleSubmitComment(formData: FormData) {
 
   const rawFormData = {
     id: randomUUID(),
-    text: comment,
+    text: comment.toString(),
     profile_id: metadata?.id,
     created_at: date,
     updated_at: date,
@@ -80,16 +83,16 @@ export async function handleSubmitComment(formData: FormData) {
   revalidatePath("/");
 
   try {
-    console.log("location: lib/action.ts",rawFormData);
+    console.log("location: lib/action.ts", rawFormData);
     await supabase.from("gists_replies").insert(rawFormData);
   } catch (error) {
     return {
-      message: "database error : failed to create gist",
+      message: "database error : failed to create comment",
     };
     //toast.error(" gist not sent ");
   }
 }
-
+console.log("errors checking...", error);
 // function createClient() {
 //   throw new Error("Function not implemented.");
 // }
