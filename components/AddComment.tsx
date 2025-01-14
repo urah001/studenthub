@@ -4,7 +4,7 @@ import { addComment } from "@/app/gist/mutation";
 import SubmitGistBtn from "@/app/gistSubmit/submitBtn";
 import { handleSubmitComment } from "@/lib/action";
 type Props = {
-  postId: string;
+  postId: string|undefined;
 };
 
 export default function AddCommentClient({ postId }: Props) {
