@@ -1,5 +1,5 @@
 "use client";
-import { handleSubmitComment } from "@/lib/action";
+import { handleSubmitComment } from "./lib/action";
 import { useRef } from "react";
 import SubmitCommentBtn from "./submitBtn";
 
