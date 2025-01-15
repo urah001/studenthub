@@ -139,3 +139,36 @@ export const isLiked = async ({
     .single();
   return Boolean(data?.id);
 };
+
+
+//get comment
+
+export type commetType = Database["public"]["Tables"]["gists"]["Row"] & {
+  username: string;
+  full_name: string;
+};
+
+export const getComment = async (currentUserId?: string) => {
+  try {
+    let err = "";
+    const res = await db
+      .select()
+      .from(gistsReplies)
+      .leftJoin(likes, eq(gists.id, likes.gistId))
+      .innerJoin(profiles, eq(gists.profileId, profiles.id))
+      .orderBy(desc(gists.createdAt))
+      .limit(5)
+      .catch(() => {
+        err = "something went wrong while fetching all the gist";
+      });
+   // console.log("location: app/gist/queries.tsx", res);
+    //revalidatePath("/");
+    //console.log("response");
+
+    return { data: res, error: err };
+    // return { data: res.rows };
+  } catch (error) {
+  //  console.log("location: app/gist/queries.tsx", error)
+    return { error };
+  }
+  }

@@ -5,7 +5,7 @@ import dayjs, { Dayjs } from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { Gist } from "../gist/Gist";
 import { getGist } from "../gist/queries";
-/*here*/ import { createSupabase } from "../gist";
+/*here*/ //import { createSupabase } from "../gist";
 import { getCurrentUser } from "../../lib/data";
 import MobileNav from "@/components/MobileNav";
 import FloatingActionButton from "@/components/FAB";
