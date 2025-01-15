@@ -17,8 +17,8 @@ const FormSchema = z.object({
     }),
 });
 
-//const { supabase, supabaseServer } = createSupabase();
-const supabase = createClient();
+const { supabase, supabaseServer } = createSupabase();
+//const supabase = createClient();
 
 export async function handleSubmitComment(formData: FormData) {
   const comment = formData.get("comment");
@@ -37,12 +37,13 @@ export async function handleSubmitComment(formData: FormData) {
     created_at: date,
     updated_at: date,
   };
-  
+
   try {
-      await supabase.from("giss").insert(rawFormData);
-      revalidatePath("/");
-      console.log("location: lib/action.ts", rawFormData);
-    } catch (error) {
+    await supabase.from("gists_replies").insert(rawFormData);
+    revalidatePath("/");
+    console.log("location: lib/action.ts", rawFormData);
+  } catch (error) {
+    console.log("app/addComment/lib: ", error);
     return {
       message: "database error : failed to create comment",
     };

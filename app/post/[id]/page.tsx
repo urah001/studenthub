@@ -1,10 +1,16 @@
 "use server";
-import { getGist } from "@/app/gist/queries";
+import { getComment, getGist } from "@/app/gist/queries";
 import Navigation from "@/components/Navigation";
 import Explore from "@/components/Explore";
 import AddCommentClient from "@/components/AddComment"; // Client component for adding comments
 import Link from "next/link";
 import CommentForm from "@/app/addComment/create-form";
+import { gistsReplies, profiles } from "@/lib/db/schema";
+import { Comment } from "@/app/addComment/comment";
+import Comment_ from "postcss/lib/comment";
+import { getCurrentUser } from "@/lib/data";
+
+
 
 type Params = {
   id: string;
@@ -12,7 +18,8 @@ type Params = {
 
 export default async function PostPage({ params }: { params: Params }) {
   const { id } = params;
-
+  const res = await getComment();
+ const getCurrent = await getCurrentUser();
   // Fetch the post by ID using the getGist function
   const { data: posts, error } = await getGist();
   console.log("location: app/post/id/page.tsx", error);
@@ -79,22 +86,26 @@ export default async function PostPage({ params }: { params: Params }) {
             {/* Profile Picture Placeholder */}
             <div className="h-10 w-10 rounded-full bg-gray-600"></div>
 
-            {/* Input Box */}
+            {/* comment Input Box */}
             <CommentForm />
           </div>
 
           {/* comment section */}
-          <div className="mt-6">
-            <h2 className="text-lg font-bold mb-4">Comments</h2>
-            <div className="border-b-[0.1px] border-gray-600 py-2">
-              <div className="text-sm">
-                <span className="font-bold"> full name</span>
-                <span className="text-gray-500 ml-2"> @username</span>
-              </div>
-              <div className="text-gray-300 mt-1">user comment</div>
-            </div>
-            {/* add reaction here */}
-          </div>
+          {res.data?.map(({gists_replies, profiles}) => (
+           
+            <Comment
+            key={gists_replies.id}
+            comment={{
+              gistDetails:{
+                ...gists_replies,
+              },
+              userProfile:{
+                ...profiles,
+              },
+            }}
+            currentUserId={getCurrent?.user.id}
+            />
+          ))}
         </div>
       </div>
 
