@@ -1,3 +1,4 @@
+// the client form that collect user input and send to the db
 "use client";
 import { handleSubmitComment } from "./lib/action";
 import { useRef } from "react";
