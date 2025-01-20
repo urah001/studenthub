@@ -2,7 +2,6 @@
 import { Dot, Send, ThreeDots } from "react-bootstrap-icons";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
-
 import { MessageCircleIcon, RetweetIcon } from "@/components @/icon";
 import Link from "next/link";
 import { gist, Profile } from "@/lib/db/schema";
